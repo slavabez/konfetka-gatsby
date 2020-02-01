@@ -1,31 +1,31 @@
-import * as React from 'react'
-import { graphql } from 'gatsby'
-import styled from 'styled-components'
+import * as React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
 
 // Layout
-import Layout from '../layout/index'
+import Layout from "../layout/index";
 
 // Components
-import Image from '../components/Image'
-import Heading from '../components/Heading'
+import Image from "../components/Image";
+import Heading from "../components/Heading";
 
-interface IndexPageProps {
+interface IIndexPageProps {
   location: {
-    pathname: string
-  }
+    pathname: string;
+  };
   data: {
     image: {
       childImageSharp: {
-        fluid: any
-      }
-    }
+        fluid: any;
+      };
+    };
     site: {
       siteMetadata: {
-        title: string
-        description: string
-      }
-    }
-  }
+        title: string;
+        description: string;
+      };
+    };
+  };
 }
 
 const Wrapper = styled.div`
@@ -37,10 +37,10 @@ const Wrapper = styled.div`
   justify-content: center;
   padding: 20px;
   background: rgb(0, 53, 128);
-`
+`;
 
-export default ({ data, location }: IndexPageProps) => {
-  const { image, site } = data
+export default ({ data, location }: IIndexPageProps) => {
+  const { image, site } = data;
   return (
     <Layout location={location}>
       <Wrapper>
@@ -51,8 +51,8 @@ export default ({ data, location }: IndexPageProps) => {
         />
       </Wrapper>
     </Layout>
-  )
-}
+  );
+};
 
 export const NotFoundQuery = graphql`
   query NotFoundPageQuery {
@@ -66,4 +66,4 @@ export const NotFoundQuery = graphql`
       }
     }
   }
-`
+`;

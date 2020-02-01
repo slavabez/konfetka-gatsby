@@ -1,31 +1,31 @@
-import * as React from 'react'
-import { graphql } from 'gatsby'
-import styled from 'styled-components'
+import * as React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
 
 // Layout
-import Layout from '../layout/index'
+import Layout from "../layout/index";
 
 // Components
-import Image from '../components/Image'
-import Heading from '../components/Heading'
+import Image from "../components/Image";
+import Heading from "../components/Heading";
 
 interface IIndexPageProps {
   location: {
-    pathname: string
-  }
+    pathname: string;
+  };
   data: {
     image: {
       childImageSharp: {
-        fluid: any
-      }
-    }
+        fluid: any;
+      };
+    };
     site: {
       siteMetadata: {
-        title: string
-        description: string
-      }
-    }
-  }
+        title: string;
+        description: string;
+      };
+    };
+  };
 }
 
 const Wrapper = styled.div`
@@ -37,10 +37,10 @@ const Wrapper = styled.div`
   justify-content: center;
   padding: ${p => p.theme.spacing.unit * 3}px;
   background: #003580;
-`
+`;
 
 export default ({ data, location }: IIndexPageProps) => {
-  const { image, site } = data
+  const { image, site } = data;
   return (
     <Layout location={location}>
       <Wrapper>
@@ -51,8 +51,8 @@ export default ({ data, location }: IIndexPageProps) => {
         />
       </Wrapper>
     </Layout>
-  )
-}
+  );
+};
 
 export const indexPageQuery = graphql`
   query IndexPageQuery {
@@ -66,4 +66,4 @@ export const indexPageQuery = graphql`
       }
     }
   }
-`
+`;
