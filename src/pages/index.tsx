@@ -9,7 +9,7 @@ import Layout from '../layout/index'
 import Image from '../components/Image'
 import Heading from '../components/Heading'
 
-interface IndexPageProps {
+interface IIndexPageProps {
   location: {
     pathname: string
   }
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   background: #003580;
 `
 
-export default ({ data, location }: IndexPageProps) => {
+export default ({ data, location }: IIndexPageProps) => {
   const { image, site } = data
   return (
     <Layout location={location}>

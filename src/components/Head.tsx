@@ -29,7 +29,7 @@ export default ({
           language,
           siteUrl,
           color,
-          twitter,
+          instagram
         },
       },
     }) => {
@@ -38,7 +38,7 @@ export default ({
         description: description || defaultDescription,
         image: thumbnail || `${siteUrl}/assets/thumbnail.png`,
         url: `${siteUrl}${pathname}`,
-        twitter,
+        instagram,
       }
       return (
         <Helmet title={seo.title} titleTemplate={titleTemplate}>
@@ -63,7 +63,7 @@ export default ({
             content="black-translucent"
           />
 
-          <meta name="twitter:creator" content={seo.twitter} />
+          <meta name="twitter:creator" content={seo.instagram} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={seo.title} />
           <meta name="twitter:description" content={seo.description} />
@@ -86,7 +86,7 @@ const QueryHead = graphql`
         defaultDescription: description
         language
         color
-        twitter
+        instagram
       }
     }
   }

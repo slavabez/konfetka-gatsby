@@ -1,7 +1,7 @@
 {
-  "name": "gnonce-gatsby",
-  "version": "1.0.0",
-  "description": "Gatsby Starter Gnonce",
+  "name": "konfetka-gatsby",
+  "version": "0.0.1",
+  "description": "Static Gatsby site for Konfetka (konfetka-shop.kz0",
   "private": true,
   "scripts": {
     "build": "gatsby build",
