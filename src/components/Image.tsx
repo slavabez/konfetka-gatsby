@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 `;
 
 const Image = styled(Img)`
-  width: 200px;
+  //width: 200px;
   ${media.sm`
     width: 150px;
   `}
@@ -34,7 +34,7 @@ export default (props: IImageProps) => {
 export const fluidImage = graphql`
   fragment fluidImage on File {
     childImageSharp {
-      fluid(maxWidth: 200) {
+      fluid(maxWidth: 500) {
         ...GatsbyImageSharpFluid
       }
     }

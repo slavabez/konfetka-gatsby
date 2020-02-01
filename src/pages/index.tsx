@@ -16,7 +16,7 @@ interface IIndexPageProps {
     pathname: string;
   };
   data: {
-    logoImage: {
+    logo: {
       childImageSharp: {
         fluid: any;
       };
@@ -60,12 +60,12 @@ const LinksContainer = styled.div`
 `;
 
 export default ({ data, location }: IIndexPageProps) => {
-  const { logoImage, site } = data;
+  const { logo, site } = data;
   return (
     <Layout location={location}>
       <Wrapper>
         <Header>
-          <Image fluid={} />
+          <Image img={logo.childImageSharp} />
           <LinksContainer>
             <Link to="/">Home</Link>
             <Link to="/finder">Finder</Link>
@@ -79,8 +79,8 @@ export default ({ data, location }: IIndexPageProps) => {
 
 export const indexPageQuery = graphql`
   query IndexPageQuery {
-    logoImage: file(relativePath: { eq: "logo.png" }) {
-      
+    logo: file(relativePath: { eq: "logo.png" }) {
+      ...fluidImage
     }
     site {
       siteMetadata {
