@@ -26,7 +26,7 @@ module.exports = {
         background_color: `#FF8515`,
         theme_color: `#FF8515`,
         display: `standalone`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo_candy.png`, // This path is relative to the root of the site.
         include_favicon: true, // Include favicon
       },
     },

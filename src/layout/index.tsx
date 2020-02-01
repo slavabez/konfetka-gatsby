@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import theme from "../styles/theme";
 import GlobalStyles from "../styles/globalStyles";
 
-import Head from "../components/Head";
+import PageHead from "../components/Head";
 
 interface ILayoutProps {
   children: any;
@@ -21,7 +21,7 @@ export default ({ children, location }: ILayoutProps) => {
   return (
     <Wrapper>
       <GlobalStyles />
-      <Head pathname={location.pathname} />
+      <PageHead pathname={location.pathname} />
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </Wrapper>
   );

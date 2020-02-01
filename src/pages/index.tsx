@@ -1,20 +1,22 @@
 import * as React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import styled from "styled-components";
+
+// Theme
+import mainTheme from "../styles/theme";
 
 // Layout
 import Layout from "../layout/index";
 
 // Components
 import Image from "../components/Image";
-import Heading from "../components/Heading";
 
 interface IIndexPageProps {
   location: {
     pathname: string;
   };
   data: {
-    image: {
+    logoImage: {
       childImageSharp: {
         fluid: any;
       };
@@ -29,26 +31,47 @@ interface IIndexPageProps {
 }
 
 const Wrapper = styled.div`
-  width: 100%;
+  min-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Header = styled.header`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${mainTheme.palette.darkPrimary};
+`;
+
+const LinksContainer = styled.div`
+  width: 100%;
+  display: flex;
   justify-content: center;
-  padding: ${p => p.theme.spacing.unit * 3}px;
-  background: #003580;
+
+  a {
+    padding: 0 0.5rem;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+  }
 `;
 
 export default ({ data, location }: IIndexPageProps) => {
-  const { image, site } = data;
+  const { logoImage, site } = data;
   return (
     <Layout location={location}>
       <Wrapper>
-        <Image img={image.childImageSharp} />
-        <Heading
-          title={site.siteMetadata.title}
-          subtitle={site.siteMetadata.description}
-        />
+        <Header>
+          <Image fluid={} />
+          <LinksContainer>
+            <Link to="/">Home</Link>
+            <Link to="/finder">Finder</Link>
+            <a href="#footer">Contacts</a>
+          </LinksContainer>
+        </Header>
       </Wrapper>
     </Layout>
   );
@@ -56,8 +79,8 @@ export default ({ data, location }: IIndexPageProps) => {
 
 export const indexPageQuery = graphql`
   query IndexPageQuery {
-    image: file(relativePath: { eq: "icon.png" }) {
-      ...fluidImage
+    logoImage: file(relativePath: { eq: "logo.png" }) {
+      
     }
     site {
       siteMetadata {
