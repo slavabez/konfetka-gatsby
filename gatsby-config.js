@@ -7,14 +7,22 @@ module.exports = {
     siteUrl: `https://konfetka-shop.kz/`,
     language: `ru`,
     color: `#FF8515`,
-    instagram: 'konfetka.kz',
+    instagram: "konfetka.kz",
   },
   plugins: [
+    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `img`,
         path: `${__dirname}/src/images/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/products/`,
       },
     },
     {
@@ -38,4 +46,4 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
   ],
-}
+};

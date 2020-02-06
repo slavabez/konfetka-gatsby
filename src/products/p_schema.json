@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://konfetka-shop.kz",
+  "title": "Product",
+  "type": "object",
+  "properties": {
+
+  }
+}
