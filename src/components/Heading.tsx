@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Wave from "./Wave";
 
 interface IHeadingProps {
   title: string;
@@ -25,6 +26,7 @@ export default (props: IHeadingProps) => {
     <Wrapper>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
+      <Wave/>
     </Wrapper>
   );
 };

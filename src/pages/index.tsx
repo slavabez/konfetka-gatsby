@@ -1,5 +1,6 @@
 import * as React from "react";
 import { graphql, Link } from "gatsby";
+import BackgroundImage from "gatsby-background-image";
 import styled from "styled-components";
 
 // Theme
@@ -8,15 +9,14 @@ import mainTheme from "../styles/theme";
 // Layout
 import Layout from "../layout/index";
 
-// Components
-import Image from "../components/Image";
+import WaveSVG from "../images/optimized_wave.svg";
 
 interface IIndexPageProps {
   location: {
     pathname: string;
   };
   data: {
-    logo: {
+    banner: {
       childImageSharp: {
         fluid: any;
       };
@@ -39,48 +39,77 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.header`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${mainTheme.palette.darkPrimary};
+  background-color: ${mainTheme.palette.mainColor};
 `;
 
-const LinksContainer = styled.div`
+const EmptyContainer = styled.div`
+  position: absolute;
+  z-index: 10;
+  top: 82px;
+  height: 30px;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  background-image: url(${WaveSVG});
+`;
 
-  a {
-    padding: 0 0.5rem;
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-  }
+const FloatingTitle = styled.h1`
+  color: ${mainTheme.palette.headerColor};
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  text-shadow: #fff 0 0 4px;
+`;
+
+interface IBEProps {
+  className?: any;
+  imageData?: any;
+}
+
+const BannerElement = ({ className, imageData }: IBEProps) => {
+  return (
+    <BackgroundImage
+      fluid={imageData}
+      className={className}
+      backgroundColor={mainTheme.palette.mainAccent}
+    >
+      {/*<FloatingTitle>Огромный ассортимент</FloatingTitle>*/}
+    </BackgroundImage>
+  );
+};
+
+const BannerSection = styled(BannerElement)`
+  width: 100%;
+  height: 200px;
+  background-position: bottom center;
+  background-repeat: repeat-y;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default ({ data, location }: IIndexPageProps) => {
-  const { logo, site } = data;
+  const { banner } = data;
   return (
     <Layout location={location}>
-      <Wrapper>
-        <Header>
-          <Image img={logo.childImageSharp} />
-          <LinksContainer>
-            <Link to="/">Home</Link>
-            <Link to="/finder">Finder</Link>
-            <a href="#footer">Contacts</a>
-          </LinksContainer>
-        </Header>
-      </Wrapper>
+      <BannerSection imageData={banner.childImageSharp.fluid} />
     </Layout>
   );
 };
 
 export const indexPageQuery = graphql`
   query IndexPageQuery {
-    logo: file(relativePath: { eq: "logo.png" }) {
-      ...fluidImage
+    banner: file(relativePath: { eq: "banner.png" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid
+        }
+      }
     }
     site {
       siteMetadata {

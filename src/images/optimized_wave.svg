@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="30" viewBox="0 0 26.458 7.938">
+ <g transform="translate(0 -289.062)">
+  <rect width="26.987" height="3.44" x="-.265" y="287.21" ry=".265" fill="#fe6321" paint-order="fill markers stroke"/>
+  <path d="M-.265 285.094c1.412 0 2.823 0 5.072 2.47 2.248 2.469 5.335 7.408 8.422 7.407 3.087 0 6.174-4.939 8.423-7.408 2.249-2.47 3.66-2.47 5.07-2.47" transform="matrix(1 0 0 .625 0 112.204)" fill="#fe6321" stroke="#70401c" stroke-width="1.004" stroke-linejoin="bevel"/>
+  <circle cx="13.214" cy="291.991" r=".265" fill="#70401c" stroke="#70401c" stroke-width=".794"/>
+ </g>
+</svg>
