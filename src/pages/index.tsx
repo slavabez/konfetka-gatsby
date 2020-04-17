@@ -25,7 +25,10 @@ interface IIndexPageProps {
 export default ({ location }: IIndexPageProps) => {
   return (
     <Layout location={location}>
-      <BannerSection />
+      <section>
+        <h1>Конфетка</h1>
+        <p>Кокшетау</p>
+      </section>
     </Layout>
   );
 };

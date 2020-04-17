@@ -40,7 +40,7 @@ const PageWrapper = styled.div`
   align-items: center;
 `;
 
-const Header = styled.header`
+const Logo = styled.header`
   position: relative;
   width: 100%;
   display: flex;
@@ -67,10 +67,9 @@ export default ({ children, location }: ILayoutProps) => {
       <PageHead pathname={location.pathname} />
       <ThemeProvider theme={theme}>
         <PageWrapper>
-          <Header>
+          <Logo>
             <Img fixed={file.childImageSharp.fixed} />
-          </Header>
-          <DecorativeWave />
+          </Logo>
           {children}
         </PageWrapper>
       </ThemeProvider>
