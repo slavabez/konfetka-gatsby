@@ -40,7 +40,8 @@ const PageWrapper = styled.div`
   align-items: center;
 `;
 
-
+const red = "I'm redundant";
+// console.log(red);
 
 const Logo = styled.header`
   position: relative;
