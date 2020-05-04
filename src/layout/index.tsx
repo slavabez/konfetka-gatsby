@@ -40,6 +40,8 @@ const PageWrapper = styled.div`
   align-items: center;
 `;
 
+
+
 const Logo = styled.header`
   position: relative;
   width: 100%;
