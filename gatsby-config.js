@@ -19,13 +19,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/products/`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Конфетка - Сеть кондитерских магазинов`,
@@ -38,6 +31,7 @@ module.exports = {
         include_favicon: true, // Include favicon
       },
     },
+    `gatsby-plugin-chakra-ui`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-styled-components`,
