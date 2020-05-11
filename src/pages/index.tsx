@@ -1,16 +1,11 @@
-import React from "react";
-import { Box, Text } from "@chakra-ui/core";
-import Header from "../components/ResponsiveHeader";
+import React from 'react';
 
-const IndexPage = () => {
+import { Layout } from '../components/Layout';
+
+export default function IndexPage(): JSX.Element {
   return (
-    <>
-      <Header />
-      <Box p={8}>
-        <Text fontSize="x1">Привет</Text>
-      </Box>
-    </>
+    <Layout>
+      <p>Hello, world!</p>
+    </Layout>
   );
-};
-
-export default IndexPage;
+}

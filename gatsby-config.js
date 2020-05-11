@@ -1,43 +1,27 @@
+const siteMetadata = {
+  name: 'Gatsby Strict Starter',
+  description:
+    'Demo for a Gatsby starter with strict linting and auto-formatting rules.',
+};
+
 module.exports = {
-  siteMetadata: {
-    site: `Konfetka`,
-    title: `Конфетка - Сеть кондитерских магазинов`,
-    description: `Конфетка - сеть фирменных кондитерских магазинов в г. Кокшетау, Казахстан. Огромный ассортимент печенья, конфет, вафель и шоколада на любой вкус и бюджет. Сладости от Рахат, Баян-Сулу, Славянка, Садко (Свитлайф), Далматово, Пионер, Микс-Макс и многих других. Кондитерские изделия, шоколад, конфеты в Кокшетау.`,
-    titleTemplate: `%s - Конфетка`,
-    siteUrl: `https://konfetka-shop.kz/`,
-    language: `ru`,
-    color: `#FF8515`,
-    instagram: "konfetka.kz",
-  },
+  siteMetadata,
   plugins: [
-    `gatsby-transformer-json`,
+    'gatsby-plugin-chakra-ui',
+    'gatsby-plugin-emotion',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `img`,
-        path: `${__dirname}/src/images/`,
+        ...siteMetadata,
+        display: 'minimal-ui',
+        theme_color: '#663399',
+        background_color: 'white',
+        icon: 'src/assets/favicon.png',
+        lang: 'en-US',
+        start_url: '/',
       },
     },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Конфетка - Сеть кондитерских магазинов`,
-        short_name: `Конфетка`,
-        start_url: `/`,
-        background_color: `#FF8515`,
-        theme_color: `#FF8515`,
-        display: `standalone`,
-        icon: `src/images/logo_candy.png`, // This path is relative to the root of the site.
-        include_favicon: true, // Include favicon
-      },
-    },
-    `gatsby-plugin-chakra-ui`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-typescript`,
-    `gatsby-plugin-styled-components`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-offline`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-typescript',
   ],
 };
