@@ -12,7 +12,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
     "format": "prettier --ignore-path .gitignore --write .",
     "lint": "eslint --ignore-path .gitignore \"**/*.{ts,tsx,js}\"",
     "serve": "gatsby serve",
