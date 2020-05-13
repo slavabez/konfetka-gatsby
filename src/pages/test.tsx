@@ -55,14 +55,6 @@ export default function IndexPage(): JSX.Element {
 
   return (
     <Layout>
-      <Alert status="error">
-        <AlertIcon />
-        <AlertTitle mr={2}>Ваш браузер очень устарел</AlertTitle>
-        <AlertDescription>
-          Для более удобного использования нашего сайта обновите ваш браузер
-        </AlertDescription>
-        <CloseButton position="absolute" right="8px" top="8px" />
-      </Alert>
       <Button ref={btnRef} onClick={onOpen}>
         Toggle
       </Button>
