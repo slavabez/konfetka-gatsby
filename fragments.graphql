@@ -1,0 +1,7 @@
+fragment GatsbyImageSharpFluid on ImageSharpFluid {
+  base64
+  aspectRatio
+  src
+  srcSet
+  sizes
+}

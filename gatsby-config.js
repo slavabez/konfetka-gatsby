@@ -30,5 +30,21 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-typescript',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `assets`,
+        path: `${__dirname}/src/assets`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 75,
+      },
+    },
+    `gatsby-transformer-sharp`,
   ],
 };
