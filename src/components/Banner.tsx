@@ -8,7 +8,7 @@ const Banner: React.FC = () => {
     query {
       file(relativePath: { eq: "banner.png" }) {
         childImageSharp {
-          fluid(maxHeight: 100) {
+          fluid {
             ...GatsbyImageSharpFluid
           }
         }
@@ -20,7 +20,7 @@ const Banner: React.FC = () => {
     <Img
       fluid={imageData.file.childImageSharp.fluid}
       alt="Рекламный баннер"
-      style={{ height: 250 }}
+      style={{ minHeight: 250 }}
      />
   );
 };

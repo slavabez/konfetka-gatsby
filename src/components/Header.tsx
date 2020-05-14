@@ -26,7 +26,7 @@ MenuItems.defaultProps = {
 };
 
 const Header: React.FC = (props) => {
-  const [show, setShow] = React.useState(true);
+  const [show, setShow] = React.useState(false);
   const handleToggle: () => void = () => setShow(!show);
 
   const data = useStaticQuery(graphql`
