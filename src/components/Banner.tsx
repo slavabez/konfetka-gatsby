@@ -17,11 +17,13 @@ const Banner: React.FC = () => {
   `);
 
   return (
-    <Img
-      fluid={imageData.file.childImageSharp.fluid}
-      alt="Рекламный баннер"
-      style={{ minHeight: 250 }}
-     />
+    <Box display={{ base: 'none', md: 'block' }}>
+      <Img
+        fluid={imageData.file.childImageSharp.fluid}
+        alt="Рекламный баннер"
+        style={{ minHeight: 250 }}
+      />
+    </Box>
   );
 };
 

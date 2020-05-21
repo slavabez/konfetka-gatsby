@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/core';
-import { graphql, useStaticQuery } from 'gatsby';
+import { Box, Flex, Icon, Link as CLink, Text } from '@chakra-ui/core';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -53,11 +53,13 @@ const Header: React.FC = (props) => {
       {...props}
     >
       <Box style={{ flexGrow: 1, marginRight: '0.5rem', maxHeight: '80px' }}>
-        <Img
-          fluid={data.file.childImageSharp.fluid}
-          alt="Конфетка Логотип"
-          style={{ maxWidth: "275px" }}
-        />
+        <Link to="/">
+          <Img
+            fluid={data.file.childImageSharp.fluid}
+            alt="Конфетка Логотип"
+            style={{ maxWidth: '275px' }}
+          />
+        </Link>
       </Box>
 
       <Box
@@ -83,9 +85,21 @@ const Header: React.FC = (props) => {
         justifyContent="flex-end"
         flexGrow={1}
       >
-        <MenuItems>О Нас</MenuItems>
-        <MenuItems>Магазины</MenuItems>
-        <MenuItems>Инстаграм</MenuItems>
+        <MenuItems>
+          <a href="#about_us">О Нас</a>
+        </MenuItems>
+        <MenuItems>
+          <a href="#shops">Магазины</a>
+        </MenuItems>
+        <MenuItems>
+          <CLink
+            href="https://www.instagram.com/konfetka.kz/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Инстаграм <Icon name="external-link" mx="2px" />
+          </CLink>
+        </MenuItems>
       </Box>
     </Flex>
   );
