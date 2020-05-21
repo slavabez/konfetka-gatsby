@@ -46,7 +46,7 @@ type AssetsJsonGroupConnection {
 
 type AssetsJsonProducts {
   description: String
-  image: String
+  image: File
   name: String
   price: String
 }
@@ -496,7 +496,7 @@ type Query {
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childAssetsJson: AssetsJsonFilterInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
-  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
@@ -518,6 +518,8 @@ type Site implements Node {
   id: ID!
   internal: Internal!
   parent: Node
+  pathPrefix: String
+  polyfill: Boolean
   port: Int
   siteMetadata: SiteSiteMetadata
 }
@@ -811,7 +813,59 @@ enum AssetsJsonFieldsEnum {
   parent___parent___parent___id
   products
   products___description
-  products___image
+  products___image___absolutePath
+  products___image___accessTime
+  products___image___atime
+  products___image___atimeMs
+  products___image___base
+  products___image___birthTime
+  products___image___birthtime
+  products___image___birthtimeMs
+  products___image___blksize
+  products___image___blocks
+  products___image___changeTime
+  products___image___childAssetsJson___children
+  products___image___childAssetsJson___id
+  products___image___childAssetsJson___products
+  products___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  products___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  products___image___children
+  products___image___children___children
+  products___image___children___id
+  products___image___ctime
+  products___image___ctimeMs
+  products___image___dev
+  products___image___dir
+  products___image___ext
+  products___image___extension
+  products___image___gid
+  products___image___id
+  products___image___ino
+  products___image___internal___content
+  products___image___internal___contentDigest
+  products___image___internal___description
+  products___image___internal___fieldOwners
+  products___image___internal___ignoreType
+  products___image___internal___mediaType
+  products___image___internal___owner
+  products___image___internal___type
+  products___image___mode
+  products___image___modifiedTime
+  products___image___mtime
+  products___image___mtimeMs
+  products___image___name
+  products___image___nlink
+  products___image___parent___children
+  products___image___parent___id
+  products___image___prettySize
+  products___image___publicURL
+  products___image___rdev
+  products___image___relativeDirectory
+  products___image___relativePath
+  products___image___root
+  products___image___size
+  products___image___sourceInstanceName
+  products___image___uid
   products___name
   products___price
 }
@@ -990,7 +1044,42 @@ enum FileFieldsEnum {
   childAssetsJson___parent___parent___id
   childAssetsJson___products
   childAssetsJson___products___description
-  childAssetsJson___products___image
+  childAssetsJson___products___image___absolutePath
+  childAssetsJson___products___image___accessTime
+  childAssetsJson___products___image___atime
+  childAssetsJson___products___image___atimeMs
+  childAssetsJson___products___image___base
+  childAssetsJson___products___image___birthTime
+  childAssetsJson___products___image___birthtime
+  childAssetsJson___products___image___birthtimeMs
+  childAssetsJson___products___image___blksize
+  childAssetsJson___products___image___blocks
+  childAssetsJson___products___image___changeTime
+  childAssetsJson___products___image___children
+  childAssetsJson___products___image___ctime
+  childAssetsJson___products___image___ctimeMs
+  childAssetsJson___products___image___dev
+  childAssetsJson___products___image___dir
+  childAssetsJson___products___image___ext
+  childAssetsJson___products___image___extension
+  childAssetsJson___products___image___gid
+  childAssetsJson___products___image___id
+  childAssetsJson___products___image___ino
+  childAssetsJson___products___image___mode
+  childAssetsJson___products___image___modifiedTime
+  childAssetsJson___products___image___mtime
+  childAssetsJson___products___image___mtimeMs
+  childAssetsJson___products___image___name
+  childAssetsJson___products___image___nlink
+  childAssetsJson___products___image___prettySize
+  childAssetsJson___products___image___publicURL
+  childAssetsJson___products___image___rdev
+  childAssetsJson___products___image___relativeDirectory
+  childAssetsJson___products___image___relativePath
+  childAssetsJson___products___image___root
+  childAssetsJson___products___image___size
+  childAssetsJson___products___image___sourceInstanceName
+  childAssetsJson___products___image___uid
   childAssetsJson___products___name
   childAssetsJson___products___price
   childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1554,6 +1643,8 @@ enum SiteFieldsEnum {
   parent___parent___internal___type
   parent___parent___parent___children
   parent___parent___parent___id
+  pathPrefix
+  polyfill
   port
   siteMetadata___color
   siteMetadata___description
@@ -1875,7 +1966,7 @@ input AssetsJsonFilterInput {
 
 input AssetsJsonProductsFilterInput {
   description: StringQueryOperatorInput
-  image: StringQueryOperatorInput
+  image: FileFilterInput
   name: StringQueryOperatorInput
   price: StringQueryOperatorInput
 }
@@ -2171,6 +2262,8 @@ input SiteFilterInput {
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   parent: NodeFilterInput
+  pathPrefix: StringQueryOperatorInput
+  polyfill: BooleanQueryOperatorInput
   port: IntQueryOperatorInput
   siteMetadata: SiteSiteMetadataFilterInput
 }

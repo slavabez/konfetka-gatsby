@@ -9,17 +9,24 @@ const AssortmentSection = () => {
         edges {
           node {
             products {
-              image
               name
               description
               price
+              image {
+                childImageSharp {
+                  original {
+                    src
+                  }
+                }
+              }
             }
           }
         }
       }
     }
-
   `);
+
+  console.log(data);
 
   return (
     <Box as="section" m="2">
