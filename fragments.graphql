@@ -5,3 +5,11 @@ fragment GatsbyImageSharpFluid on ImageSharpFluid {
   srcSet
   sizes
 }
+
+fragment GatsbyImageSharpFixed on ImageSharpFixed {
+  base64
+  width
+  height
+  src
+  srcSet
+}
