@@ -30,6 +30,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-typescript',
+    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -37,6 +38,13 @@ module.exports = {
         path: `${__dirname}/src/assets`,
       },
     },
+    /* {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `product_images`,
+        path: `${__dirname}/src/assets/product_images`,
+      },
+    }, */
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
