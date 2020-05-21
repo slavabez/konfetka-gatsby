@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@chakra-ui/core';
+import { Box, Flex,Heading, Text } from '@chakra-ui/core';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
@@ -14,7 +14,7 @@ const AssortmentSection = () => {
           price
           image {
             childImageSharp {
-              fixed(width: 200) {
+              fixed(width: 300) {
                 ...GatsbyImageSharpFixed
               }
             }
@@ -43,7 +43,10 @@ const AssortmentSection = () => {
       <Heading as="h1" size="xl" textAlign="center">
         Ассортимент
       </Heading>
-      {renderProducts()}
+      <Flex
+        display={{ base: `column` }}
+        align="center"
+      >{renderProducts()}</Flex>
     </Box>
   );
 };

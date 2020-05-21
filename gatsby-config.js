@@ -13,7 +13,12 @@ const siteMetadata = {
 module.exports = {
   siteMetadata,
   plugins: [
-    'gatsby-plugin-chakra-ui',
+    {
+      resolve: 'gatsby-plugin-chakra-ui',
+      options: {
+        isUsingColorMode: false,
+      },
+    },
     'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-plugin-manifest',

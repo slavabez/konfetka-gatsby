@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/core';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -28,10 +29,8 @@ export function Layout({ children }: LayoutProps): JSX.Element {
       >
         <meta name="description" content={data.site.siteMetadata.description} />
       </Helmet>
-
       <Header />
-      <main>{children}</main>
-
+      <Box as="main">{children}</Box>
       <footer>{/* TODO */}</footer>
     </React.StrictMode>
   );
