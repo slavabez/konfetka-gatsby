@@ -1,5 +1,5 @@
-import { Box, Flex, Icon, Link as CLink, Text } from '@chakra-ui/core';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Box, Flex, Icon, Link as ChakraLink, Text } from '@chakra-ui/core';
+import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -53,13 +53,13 @@ const Header: React.FC = (props) => {
       {...props}
     >
       <Box style={{ flexGrow: 1, marginRight: '0.5rem', maxHeight: '80px' }}>
-        <Link to="/">
+        <GatsbyLink to="/">
           <Img
             fluid={data.file.childImageSharp.fluid}
             alt="Конфетка Логотип"
             style={{ maxWidth: '275px' }}
           />
-        </Link>
+        </GatsbyLink>
       </Box>
 
       <Box
@@ -86,19 +86,22 @@ const Header: React.FC = (props) => {
         flexGrow={1}
       >
         <MenuItems>
-          <a href="#about_us">О Нас</a>
+          <a href="#about_us">Где мы</a>
         </MenuItems>
         <MenuItems>
           <a href="#shops">Магазины</a>
         </MenuItems>
         <MenuItems>
-          <CLink
+          <a href="#assortment">Ассортимент</a>
+        </MenuItems>
+        <MenuItems>
+          <ChakraLink
             href="https://www.instagram.com/konfetka.kz/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Инстаграм <Icon name="external-link" mx="2px" />
-          </CLink>
+          </ChakraLink>
         </MenuItems>
       </Box>
     </Flex>

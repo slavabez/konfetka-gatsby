@@ -13,3 +13,8 @@ fragment GatsbyImageSharpFixed on ImageSharpFixed {
   src
   srcSet
 }
+
+fragment GatsbyImageSharpFluidLimitPresentationSize on ImageSharpFluid {
+  maxHeight: presentationHeight
+  maxWidth: presentationWidth
+}

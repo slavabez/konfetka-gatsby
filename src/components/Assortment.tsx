@@ -1,4 +1,4 @@
-import { Box, Flex,Heading, Text } from '@chakra-ui/core';
+import { Box, Grid, Heading, Text } from '@chakra-ui/core';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
@@ -14,8 +14,9 @@ const AssortmentSection = () => {
           price
           image {
             childImageSharp {
-              fixed(width: 300) {
-                ...GatsbyImageSharpFixed
+              fluid(maxWidth: 250) {
+                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluidLimitPresentationSize
               }
             }
           }
@@ -31,7 +32,7 @@ const AssortmentSection = () => {
           key={i.toString()}
           name={p.name}
           description={p.description}
-          fixedImageProps={p.image.childImageSharp.fixed}
+          fluidImageProps={p.image.childImageSharp.fluid}
         />
       ));
     }
@@ -40,13 +41,24 @@ const AssortmentSection = () => {
 
   return (
     <Box as="section" m="2">
-      <Heading as="h1" size="xl" textAlign="center">
-        Ассортимент
+      <Heading
+        as="h1"
+        size="xl"
+        textAlign="center"
+        mt={{ base: 5 }}
+        mb={{ base: 5 }}
+        color="orange.900"
+      >
+        Топ Ассортимент
       </Heading>
-      <Flex
-        display={{ base: `column` }}
-        align="center"
-      >{renderProducts()}</Flex>
+      <Grid
+        gridTemplateColumns={{ base: `repeat(auto-fit, minmax(250px, 1fr))` }}
+        gap={6}
+        maxW="1000px"
+        m="auto"
+      >
+        {renderProducts()}
+      </Grid>
     </Box>
   );
 };
