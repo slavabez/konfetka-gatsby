@@ -1,56 +1,77 @@
-import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { Box, Button, Flex, Heading, Text } from '@chakra-ui/core';
+import { graphql, useStaticQuery } from 'gatsby';
+import BgImage from 'gatsby-background-image';
+import React from 'react';
 
-import BackgroundImage from "gatsby-background-image";
-import mainTheme from "../styles/theme";
-import styled from "styled-components";
-
-const BANNER_IMAGE_QUERY = graphql`
-  {
-    file(relativePath: { eq: "banner.png" }) {
-      childImageSharp {
-        fluid(quality: 90, maxWidth: 1920) {
-          ...GatsbyImageSharpFluid
+const Banner: React.FC = () => {
+  const imageData = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "background.jpg" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
-  }
-`;
+  `);
 
-interface IBannerProps {
-  className?: string;
-  text?: any;
-}
-
-const FloatingTitle = styled.h2`
-  color: ${mainTheme.palette.headerColor};
-  padding: 0;
-  margin: 0;
-`;
-
-const BannerElement = (props: IBannerProps) => {
-  const { file } = useStaticQuery(BANNER_IMAGE_QUERY);
   return (
-    <BackgroundImage
-      fluid={file.childImageSharp.fluid}
-      className={props.className}
-      backgroundColor={mainTheme.palette.mainAccent}
-    >
-      {props.text ? <FloatingTitle>{props.text}</FloatingTitle> : null}
-    </BackgroundImage>
+    <Box display={{ base: 'block', md: 'block' }}>
+      <BgImage
+        Tag="section"
+        fluid={imageData.file.childImageSharp.fluid}
+        style={{
+          display: `flex`,
+          alignItems: `center`,
+          justifyContent: `center`,
+          height: `80vh`,
+          maxHeight: `50rem`,
+        }}
+      >
+        <Box
+          backgroundColor="rgba(255,255,255,0.75)"
+          p={{ base: 5, md: 10 }}
+          borderRadius="lg"
+          maxWidth="sm"
+        >
+          <Heading
+            mb={2}
+            fontSize={{ base: '2xl', md: '4xl' }}
+            textAlign="center"
+            color="orange.800"
+          >
+            Конфетка
+          </Heading>
+          <Text fontSize={{ base: 'lg', md: 'xl' }}>
+            Сеть фирменных магазинов в городе Кокшетау. У нас - уникальный
+            ассортемент, который вы не найдете нигде.
+          </Text>
+          <Flex
+            flexDir={{ base: `column`, md: `row` }}
+            justifyContent="space-between"
+          >
+            <Button
+              mt={2}
+              variantColor="orange"
+              style={{ textTransform: `uppercase` }}
+            >
+              Где Мы
+            </Button>
+            <Button
+              mt={2}
+              leftIcon="info"
+              style={{ textTransform: `uppercase` }}
+            >
+              О Нас
+            </Button>
+          </Flex>
+        </Box>
+      </BgImage>
+
+      <Box />
+    </Box>
   );
 };
 
-const BannerSection = styled(BannerElement)`
-  width: 100%;
-  height: 200px;
-  background-position: bottom center;
-  background-repeat: repeat-y;
-  background-size: cover;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export default BannerSection;
+export default Banner;

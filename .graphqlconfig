@@ -1,5 +1,5 @@
 {
-  "name": "Local Gatsby Schema",
+  "name": "Untitled GraphQL Schema",
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {

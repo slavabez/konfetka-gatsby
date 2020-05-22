@@ -12,38 +12,77 @@ interface Node {
   parent: Node
 }
 
+type AssetsJson implements Node {
+  children: [Node!]!
+  id: ID!
+  internal: Internal!
+  parent: Node
+  products: [AssetsJsonProducts]
+}
+
+type AssetsJsonConnection {
+  distinct(field: AssetsJsonFieldsEnum!): [String!]!
+  edges: [AssetsJsonEdge!]!
+  group(field: AssetsJsonFieldsEnum!, limit: Int, skip: Int): [AssetsJsonGroupConnection!]!
+  nodes: [AssetsJson!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AssetsJsonEdge {
+  next: AssetsJson
+  node: AssetsJson!
+  previous: AssetsJson
+}
+
+type AssetsJsonGroupConnection {
+  edges: [AssetsJsonEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [AssetsJson!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AssetsJsonProducts {
+  description: String
+  image: File
+  name: String
+  price: String
+}
+
 type Directory implements Node {
   absolutePath: String!
   accessTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   atime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   atimeMs: Float!
   base: String!
   birthTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   birthtime: Date @deprecated(reason : "Use `birthTime` instead")
@@ -51,24 +90,24 @@ type Directory implements Node {
   blksize: Int
   blocks: Int
   changeTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   children: [Node!]!
   ctime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   ctimeMs: Float!
@@ -82,23 +121,23 @@ type Directory implements Node {
   internal: Internal!
   mode: Int!
   modifiedTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   mtime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   mtimeMs: Float!
@@ -142,35 +181,35 @@ type DirectoryGroupConnection {
 type File implements Node {
   absolutePath: String!
   accessTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   atime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   atimeMs: Float!
   base: String!
   birthTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   birthtime: Date @deprecated(reason : "Use `birthTime` instead")
@@ -178,25 +217,26 @@ type File implements Node {
   blksize: Int
   blocks: Int
   changeTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
+  childAssetsJson: AssetsJson
   childImageSharp: ImageSharp
   children: [Node!]!
   ctime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   ctimeMs: Float!
@@ -210,23 +250,23 @@ type File implements Node {
   internal: Internal!
   mode: Int!
   modifiedTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   mtime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date!
   mtimeMs: Float!
@@ -288,7 +328,7 @@ type ImageSharp implements Node {
     quality: Int,
     rotate: Int = 0,
     sizes: String = "",
-    #A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]
+    "A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]"
     srcSetBreakpoints: [Int] = [],
     toFormat: ImageFormat = NO_CHANGE,
     toFormatBase64: ImageFormat = NO_CHANGE,
@@ -301,7 +341,7 @@ type ImageSharp implements Node {
   original: ImageSharpOriginal
   parent: Node
   resize(background: String = "rgba(0,0,0,1)", base64: Boolean = false, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = NO_CHANGE, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResize
-  resolutions(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = NO_CHANGE, toFormatBase64: ImageFormat = NO_CHANGE, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResolutions @deprecated(reason : "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https:\/\/example.com\/write-docs-and-fix-this-example-link")
+  resolutions(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = NO_CHANGE, toFormatBase64: ImageFormat = NO_CHANGE, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResolutions @deprecated(reason : "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https://example.com/write-docs-and-fix-this-example-link")
   sizes(
     background: String = "rgba(0,0,0,1)",
     base64Width: Int,
@@ -318,14 +358,14 @@ type ImageSharp implements Node {
     quality: Int,
     rotate: Int = 0,
     sizes: String = "",
-    #A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]
+    "A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]"
     srcSetBreakpoints: [Int] = [],
     toFormat: ImageFormat = NO_CHANGE,
     toFormatBase64: ImageFormat = NO_CHANGE,
     traceSVG: Potrace,
     trim: Float = 0.0,
     webpQuality: Int
-  ): ImageSharpSizes @deprecated(reason : "Sizes was deprecated in Gatsby v2. It's been renamed to \"fluid\" https:\/\/example.com\/write-docs-and-fix-this-example-link")
+  ): ImageSharpSizes @deprecated(reason : "Sizes was deprecated in Gatsby v2. It's been renamed to \"fluid\" https://example.com/write-docs-and-fix-this-example-link")
 }
 
 type ImageSharpConnection {
@@ -361,8 +401,8 @@ type ImageSharpFluid {
   base64: String
   originalImg: String
   originalName: String
-  presentationHeight: Int
-  presentationWidth: Int
+  presentationHeight: Int!
+  presentationWidth: Int!
   sizes: String!
   src: String!
   srcSet: String!
@@ -413,8 +453,8 @@ type ImageSharpSizes {
   base64: String
   originalImg: String
   originalName: String
-  presentationHeight: Int
-  presentationWidth: Int
+  presentationHeight: Int!
+  presentationWidth: Int!
   sizes: String!
   src: String!
   srcSet: String!
@@ -444,29 +484,33 @@ type PageInfo {
 }
 
 type Query {
+  allAssetsJson(filter: AssetsJsonFilterInput, limit: Int, skip: Int, sort: AssetsJsonSortInput): AssetsJsonConnection!
   allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: DirectorySortInput): DirectoryConnection!
   allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: FileSortInput): FileConnection!
   allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: ImageSharpSortInput): ImageSharpConnection!
   allSite(filter: SiteFilterInput, limit: Int, skip: Int, sort: SiteSortInput): SiteConnection!
+  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: SiteBuildMetadataSortInput): SiteBuildMetadataConnection!
   allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
+  assetsJson(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, products: AssetsJsonProductsFilterListInput): AssetsJson
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
-  file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
+  file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childAssetsJson: AssetsJsonFilterInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
+  siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
 }
 
 type Site implements Node {
   buildTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date
   children: [Node!]!
@@ -478,6 +522,47 @@ type Site implements Node {
   polyfill: Boolean
   port: Int
   siteMetadata: SiteSiteMetadata
+}
+
+type SiteBuildMetadata implements Node {
+  buildTime(
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+    difference: String,
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String,
+    "Returns a string generated with Moment.js' `fromNow` function"
+    fromNow: Boolean,
+    "Configures the locale Moment.js will use to format the date."
+    locale: String
+  ): Date
+  children: [Node!]!
+  id: ID!
+  internal: Internal!
+  parent: Node
+}
+
+type SiteBuildMetadataConnection {
+  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
+  edges: [SiteBuildMetadataEdge!]!
+  group(field: SiteBuildMetadataFieldsEnum!, limit: Int, skip: Int): [SiteBuildMetadataGroupConnection!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SiteBuildMetadataEdge {
+  next: SiteBuildMetadata
+  node: SiteBuildMetadata!
+  previous: SiteBuildMetadata
+}
+
+type SiteBuildMetadataGroupConnection {
+  edges: [SiteBuildMetadataEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 type SiteConnection {
@@ -585,7 +670,6 @@ type SitePluginGroupConnection {
 }
 
 type SitePluginPackageJson {
-  author: String
   dependencies: [SitePluginPackageJsonDependencies]
   description: String
   devDependencies: [SitePluginPackageJsonDevDependencies]
@@ -614,6 +698,7 @@ type SitePluginPackageJsonPeerDependencies {
 
 type SitePluginPluginOptions {
   background_color: String
+  defaultQuality: Int
   display: String
   icon: String
   include_favicon: Boolean
@@ -622,18 +707,167 @@ type SitePluginPluginOptions {
   pathCheck: Boolean
   short_name: String
   start_url: String
+  stripMetadata: Boolean
   theme_color: String
+  useMozJpeg: Boolean
 }
 
 type SiteSiteMetadata {
   color: String
   description: String
+  instagram: String
   language: String
+  name: String
   site: String
   siteUrl: String
   title: String
   titleTemplate: String
-  instagram: String
+}
+
+enum AssetsJsonFieldsEnum {
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  products
+  products___description
+  products___image___absolutePath
+  products___image___accessTime
+  products___image___atime
+  products___image___atimeMs
+  products___image___base
+  products___image___birthTime
+  products___image___birthtime
+  products___image___birthtimeMs
+  products___image___blksize
+  products___image___blocks
+  products___image___changeTime
+  products___image___childAssetsJson___children
+  products___image___childAssetsJson___id
+  products___image___childAssetsJson___products
+  products___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  products___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  products___image___children
+  products___image___children___children
+  products___image___children___id
+  products___image___ctime
+  products___image___ctimeMs
+  products___image___dev
+  products___image___dir
+  products___image___ext
+  products___image___extension
+  products___image___gid
+  products___image___id
+  products___image___ino
+  products___image___internal___content
+  products___image___internal___contentDigest
+  products___image___internal___description
+  products___image___internal___fieldOwners
+  products___image___internal___ignoreType
+  products___image___internal___mediaType
+  products___image___internal___owner
+  products___image___internal___type
+  products___image___mode
+  products___image___modifiedTime
+  products___image___mtime
+  products___image___mtimeMs
+  products___image___name
+  products___image___nlink
+  products___image___parent___children
+  products___image___parent___id
+  products___image___prettySize
+  products___image___publicURL
+  products___image___rdev
+  products___image___relativeDirectory
+  products___image___relativePath
+  products___image___root
+  products___image___size
+  products___image___sourceInstanceName
+  products___image___uid
+  products___name
+  products___price
 }
 
 enum DirectoryFieldsEnum {
@@ -770,6 +1004,84 @@ enum FileFieldsEnum {
   blksize
   blocks
   changeTime
+  childAssetsJson___children
+  childAssetsJson___children___children
+  childAssetsJson___children___children___children
+  childAssetsJson___children___children___id
+  childAssetsJson___children___id
+  childAssetsJson___children___internal___content
+  childAssetsJson___children___internal___contentDigest
+  childAssetsJson___children___internal___description
+  childAssetsJson___children___internal___fieldOwners
+  childAssetsJson___children___internal___ignoreType
+  childAssetsJson___children___internal___mediaType
+  childAssetsJson___children___internal___owner
+  childAssetsJson___children___internal___type
+  childAssetsJson___children___parent___children
+  childAssetsJson___children___parent___id
+  childAssetsJson___id
+  childAssetsJson___internal___content
+  childAssetsJson___internal___contentDigest
+  childAssetsJson___internal___description
+  childAssetsJson___internal___fieldOwners
+  childAssetsJson___internal___ignoreType
+  childAssetsJson___internal___mediaType
+  childAssetsJson___internal___owner
+  childAssetsJson___internal___type
+  childAssetsJson___parent___children
+  childAssetsJson___parent___children___children
+  childAssetsJson___parent___children___id
+  childAssetsJson___parent___id
+  childAssetsJson___parent___internal___content
+  childAssetsJson___parent___internal___contentDigest
+  childAssetsJson___parent___internal___description
+  childAssetsJson___parent___internal___fieldOwners
+  childAssetsJson___parent___internal___ignoreType
+  childAssetsJson___parent___internal___mediaType
+  childAssetsJson___parent___internal___owner
+  childAssetsJson___parent___internal___type
+  childAssetsJson___parent___parent___children
+  childAssetsJson___parent___parent___id
+  childAssetsJson___products
+  childAssetsJson___products___description
+  childAssetsJson___products___image___absolutePath
+  childAssetsJson___products___image___accessTime
+  childAssetsJson___products___image___atime
+  childAssetsJson___products___image___atimeMs
+  childAssetsJson___products___image___base
+  childAssetsJson___products___image___birthTime
+  childAssetsJson___products___image___birthtime
+  childAssetsJson___products___image___birthtimeMs
+  childAssetsJson___products___image___blksize
+  childAssetsJson___products___image___blocks
+  childAssetsJson___products___image___changeTime
+  childAssetsJson___products___image___children
+  childAssetsJson___products___image___ctime
+  childAssetsJson___products___image___ctimeMs
+  childAssetsJson___products___image___dev
+  childAssetsJson___products___image___dir
+  childAssetsJson___products___image___ext
+  childAssetsJson___products___image___extension
+  childAssetsJson___products___image___gid
+  childAssetsJson___products___image___id
+  childAssetsJson___products___image___ino
+  childAssetsJson___products___image___mode
+  childAssetsJson___products___image___modifiedTime
+  childAssetsJson___products___image___mtime
+  childAssetsJson___products___image___mtimeMs
+  childAssetsJson___products___image___name
+  childAssetsJson___products___image___nlink
+  childAssetsJson___products___image___prettySize
+  childAssetsJson___products___image___publicURL
+  childAssetsJson___products___image___rdev
+  childAssetsJson___products___image___relativeDirectory
+  childAssetsJson___products___image___relativePath
+  childAssetsJson___products___image___root
+  childAssetsJson___products___image___size
+  childAssetsJson___products___image___sourceInstanceName
+  childAssetsJson___products___image___uid
+  childAssetsJson___products___name
+  childAssetsJson___products___price
   childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___children___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -990,6 +1302,8 @@ enum ImageFit {
   CONTAIN
   COVER
   FILL
+  INSIDE
+  OUTSIDE
 }
 
 enum ImageFormat {
@@ -1150,6 +1464,96 @@ enum PotraceTurnPolicy {
   TURNPOLICY_WHITE
 }
 
+enum SiteBuildMetadataFieldsEnum {
+  buildTime
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+}
+
 enum SiteFieldsEnum {
   buildTime
   children
@@ -1244,12 +1648,13 @@ enum SiteFieldsEnum {
   port
   siteMetadata___color
   siteMetadata___description
+  siteMetadata___instagram
   siteMetadata___language
+  siteMetadata___name
   siteMetadata___site
   siteMetadata___siteUrl
   siteMetadata___title
   siteMetadata___titleTemplate
-  siteMetadata___twitter
 }
 
 enum SitePageFieldsEnum {
@@ -1374,7 +1779,6 @@ enum SitePageFieldsEnum {
   pluginCreator___internal___type
   pluginCreator___name
   pluginCreator___nodeAPIs
-  pluginCreator___packageJson___author
   pluginCreator___packageJson___dependencies
   pluginCreator___packageJson___dependencies___name
   pluginCreator___packageJson___dependencies___version
@@ -1406,6 +1810,7 @@ enum SitePageFieldsEnum {
   pluginCreator___parent___parent___id
   pluginCreator___pluginFilepath
   pluginCreator___pluginOptions___background_color
+  pluginCreator___pluginOptions___defaultQuality
   pluginCreator___pluginOptions___display
   pluginCreator___pluginOptions___icon
   pluginCreator___pluginOptions___include_favicon
@@ -1414,7 +1819,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___pluginOptions___short_name
   pluginCreator___pluginOptions___start_url
+  pluginCreator___pluginOptions___stripMetadata
   pluginCreator___pluginOptions___theme_color
+  pluginCreator___pluginOptions___useMozJpeg
   pluginCreator___resolve
   pluginCreator___ssrAPIs
   pluginCreator___version
@@ -1472,7 +1879,6 @@ enum SitePluginFieldsEnum {
   internal___type
   name
   nodeAPIs
-  packageJson___author
   packageJson___dependencies
   packageJson___dependencies___name
   packageJson___dependencies___version
@@ -1528,6 +1934,7 @@ enum SitePluginFieldsEnum {
   parent___parent___parent___id
   pluginFilepath
   pluginOptions___background_color
+  pluginOptions___defaultQuality
   pluginOptions___display
   pluginOptions___icon
   pluginOptions___include_favicon
@@ -1536,7 +1943,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___pathCheck
   pluginOptions___short_name
   pluginOptions___start_url
+  pluginOptions___stripMetadata
   pluginOptions___theme_color
+  pluginOptions___useMozJpeg
   resolve
   ssrAPIs
   version
@@ -1545,6 +1954,30 @@ enum SitePluginFieldsEnum {
 enum SortOrderEnum {
   ASC
   DESC
+}
+
+input AssetsJsonFilterInput {
+  children: NodeFilterListInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  parent: NodeFilterInput
+  products: AssetsJsonProductsFilterListInput
+}
+
+input AssetsJsonProductsFilterInput {
+  description: StringQueryOperatorInput
+  image: FileFilterInput
+  name: StringQueryOperatorInput
+  price: StringQueryOperatorInput
+}
+
+input AssetsJsonProductsFilterListInput {
+  elemMatch: AssetsJsonProductsFilterInput
+}
+
+input AssetsJsonSortInput {
+  fields: [AssetsJsonFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
 }
 
 input BooleanQueryOperatorInput {
@@ -1628,6 +2061,7 @@ input FileFilterInput {
   blksize: IntQueryOperatorInput
   blocks: IntQueryOperatorInput
   changeTime: DateQueryOperatorInput
+  childAssetsJson: AssetsJsonFilterInput
   childImageSharp: ImageSharpFilterInput
   children: NodeFilterListInput
   ctime: DateQueryOperatorInput
@@ -1808,6 +2242,19 @@ input Potrace {
   turnPolicy: PotraceTurnPolicy
 }
 
+input SiteBuildMetadataFilterInput {
+  buildTime: DateQueryOperatorInput
+  children: NodeFilterListInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  parent: NodeFilterInput
+}
+
+input SiteBuildMetadataSortInput {
+  fields: [SiteBuildMetadataFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   children: NodeFilterListInput
@@ -1877,7 +2324,6 @@ input SitePluginPackageJsonDevDependenciesFilterListInput {
 }
 
 input SitePluginPackageJsonFilterInput {
-  author: StringQueryOperatorInput
   dependencies: SitePluginPackageJsonDependenciesFilterListInput
   description: StringQueryOperatorInput
   devDependencies: SitePluginPackageJsonDevDependenciesFilterListInput
@@ -1900,6 +2346,7 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
 
 input SitePluginPluginOptionsFilterInput {
   background_color: StringQueryOperatorInput
+  defaultQuality: IntQueryOperatorInput
   display: StringQueryOperatorInput
   icon: StringQueryOperatorInput
   include_favicon: BooleanQueryOperatorInput
@@ -1908,7 +2355,9 @@ input SitePluginPluginOptionsFilterInput {
   pathCheck: BooleanQueryOperatorInput
   short_name: StringQueryOperatorInput
   start_url: StringQueryOperatorInput
+  stripMetadata: BooleanQueryOperatorInput
   theme_color: StringQueryOperatorInput
+  useMozJpeg: BooleanQueryOperatorInput
 }
 
 input SitePluginSortInput {
@@ -1919,12 +2368,13 @@ input SitePluginSortInput {
 input SiteSiteMetadataFilterInput {
   color: StringQueryOperatorInput
   description: StringQueryOperatorInput
+  instagram: StringQueryOperatorInput
   language: StringQueryOperatorInput
+  name: StringQueryOperatorInput
   site: StringQueryOperatorInput
   siteUrl: StringQueryOperatorInput
   title: StringQueryOperatorInput
   titleTemplate: StringQueryOperatorInput
-  twitter: StringQueryOperatorInput
 }
 
 input SiteSortInput {
@@ -1939,22 +2389,6 @@ input StringQueryOperatorInput {
   ne: String
   nin: [String]
   regex: String
-}
-
-fragment GatsbyImageSharpFixed on ImageSharpFixed {
-  base64
-  width
-  height
-  src
-  srcSet
-}
-
-fragment GatsbyImageSharpFluid on ImageSharpFluid {
-  base64
-  aspectRatio
-  src
-  srcSet
-  sizes
 }
 
 
