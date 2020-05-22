@@ -32,6 +32,7 @@ const Banner: React.FC = () => {
         <Box
           backgroundColor="rgba(255,255,255,0.75)"
           p={{ base: 5, md: 10 }}
+          m={{ base: 5 }}
           borderRadius="lg"
           maxWidth="sm"
         >

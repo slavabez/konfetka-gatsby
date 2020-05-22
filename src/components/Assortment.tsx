@@ -52,7 +52,10 @@ const AssortmentSection = () => {
         Топ Ассортимент
       </Heading>
       <Grid
-        gridTemplateColumns={{ base: `repeat(auto-fit, minmax(250px, 1fr))` }}
+        gridTemplateColumns={{
+          base: `repeat(auto-fit, minmax(250px, 1fr))`,
+          md: `repeat(auto-fit, minmax(200px, 1fr))`,
+        }}
         gap={6}
         maxW="1000px"
         m="auto"
