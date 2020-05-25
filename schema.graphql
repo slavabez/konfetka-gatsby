@@ -18,6 +18,7 @@ type AssetsJson implements Node {
   internal: Internal!
   parent: Node
   products: [AssetsJsonProducts]
+  shops: [AssetsJsonShops]
 }
 
 type AssetsJsonConnection {
@@ -49,6 +50,15 @@ type AssetsJsonProducts {
   image: File
   name: String
   price: String
+}
+
+type AssetsJsonShops {
+  address: String
+  description: String
+  image: File
+  mapUrl: String
+  name: String
+  openingHours: String
 }
 
 type Directory implements Node {
@@ -492,7 +502,7 @@ type Query {
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: SiteBuildMetadataSortInput): SiteBuildMetadataConnection!
   allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
-  assetsJson(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, products: AssetsJsonProductsFilterListInput): AssetsJson
+  assetsJson(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, products: AssetsJsonProductsFilterListInput, shops: AssetsJsonShopsFilterListInput): AssetsJson
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childAssetsJson: AssetsJsonFilterInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
@@ -702,6 +712,7 @@ type SitePluginPluginOptions {
   display: String
   icon: String
   include_favicon: Boolean
+  isUsingColorMode: Boolean
   name: String
   path: String
   pathCheck: Boolean
@@ -827,6 +838,7 @@ enum AssetsJsonFieldsEnum {
   products___image___childAssetsJson___children
   products___image___childAssetsJson___id
   products___image___childAssetsJson___products
+  products___image___childAssetsJson___shops
   products___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   products___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   products___image___children
@@ -868,6 +880,66 @@ enum AssetsJsonFieldsEnum {
   products___image___uid
   products___name
   products___price
+  shops
+  shops___address
+  shops___description
+  shops___image___absolutePath
+  shops___image___accessTime
+  shops___image___atime
+  shops___image___atimeMs
+  shops___image___base
+  shops___image___birthTime
+  shops___image___birthtime
+  shops___image___birthtimeMs
+  shops___image___blksize
+  shops___image___blocks
+  shops___image___changeTime
+  shops___image___childAssetsJson___children
+  shops___image___childAssetsJson___id
+  shops___image___childAssetsJson___products
+  shops___image___childAssetsJson___shops
+  shops___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  shops___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  shops___image___children
+  shops___image___children___children
+  shops___image___children___id
+  shops___image___ctime
+  shops___image___ctimeMs
+  shops___image___dev
+  shops___image___dir
+  shops___image___ext
+  shops___image___extension
+  shops___image___gid
+  shops___image___id
+  shops___image___ino
+  shops___image___internal___content
+  shops___image___internal___contentDigest
+  shops___image___internal___description
+  shops___image___internal___fieldOwners
+  shops___image___internal___ignoreType
+  shops___image___internal___mediaType
+  shops___image___internal___owner
+  shops___image___internal___type
+  shops___image___mode
+  shops___image___modifiedTime
+  shops___image___mtime
+  shops___image___mtimeMs
+  shops___image___name
+  shops___image___nlink
+  shops___image___parent___children
+  shops___image___parent___id
+  shops___image___prettySize
+  shops___image___publicURL
+  shops___image___rdev
+  shops___image___relativeDirectory
+  shops___image___relativePath
+  shops___image___root
+  shops___image___size
+  shops___image___sourceInstanceName
+  shops___image___uid
+  shops___mapUrl
+  shops___name
+  shops___openingHours
 }
 
 enum DirectoryFieldsEnum {
@@ -1082,6 +1154,48 @@ enum FileFieldsEnum {
   childAssetsJson___products___image___uid
   childAssetsJson___products___name
   childAssetsJson___products___price
+  childAssetsJson___shops
+  childAssetsJson___shops___address
+  childAssetsJson___shops___description
+  childAssetsJson___shops___image___absolutePath
+  childAssetsJson___shops___image___accessTime
+  childAssetsJson___shops___image___atime
+  childAssetsJson___shops___image___atimeMs
+  childAssetsJson___shops___image___base
+  childAssetsJson___shops___image___birthTime
+  childAssetsJson___shops___image___birthtime
+  childAssetsJson___shops___image___birthtimeMs
+  childAssetsJson___shops___image___blksize
+  childAssetsJson___shops___image___blocks
+  childAssetsJson___shops___image___changeTime
+  childAssetsJson___shops___image___children
+  childAssetsJson___shops___image___ctime
+  childAssetsJson___shops___image___ctimeMs
+  childAssetsJson___shops___image___dev
+  childAssetsJson___shops___image___dir
+  childAssetsJson___shops___image___ext
+  childAssetsJson___shops___image___extension
+  childAssetsJson___shops___image___gid
+  childAssetsJson___shops___image___id
+  childAssetsJson___shops___image___ino
+  childAssetsJson___shops___image___mode
+  childAssetsJson___shops___image___modifiedTime
+  childAssetsJson___shops___image___mtime
+  childAssetsJson___shops___image___mtimeMs
+  childAssetsJson___shops___image___name
+  childAssetsJson___shops___image___nlink
+  childAssetsJson___shops___image___prettySize
+  childAssetsJson___shops___image___publicURL
+  childAssetsJson___shops___image___rdev
+  childAssetsJson___shops___image___relativeDirectory
+  childAssetsJson___shops___image___relativePath
+  childAssetsJson___shops___image___root
+  childAssetsJson___shops___image___size
+  childAssetsJson___shops___image___sourceInstanceName
+  childAssetsJson___shops___image___uid
+  childAssetsJson___shops___mapUrl
+  childAssetsJson___shops___name
+  childAssetsJson___shops___openingHours
   childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___children___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1814,6 +1928,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___display
   pluginCreator___pluginOptions___icon
   pluginCreator___pluginOptions___include_favicon
+  pluginCreator___pluginOptions___isUsingColorMode
   pluginCreator___pluginOptions___name
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
@@ -1938,6 +2053,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___display
   pluginOptions___icon
   pluginOptions___include_favicon
+  pluginOptions___isUsingColorMode
   pluginOptions___name
   pluginOptions___path
   pluginOptions___pathCheck
@@ -1962,6 +2078,7 @@ input AssetsJsonFilterInput {
   internal: InternalFilterInput
   parent: NodeFilterInput
   products: AssetsJsonProductsFilterListInput
+  shops: AssetsJsonShopsFilterListInput
 }
 
 input AssetsJsonProductsFilterInput {
@@ -1973,6 +2090,19 @@ input AssetsJsonProductsFilterInput {
 
 input AssetsJsonProductsFilterListInput {
   elemMatch: AssetsJsonProductsFilterInput
+}
+
+input AssetsJsonShopsFilterInput {
+  address: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+  image: FileFilterInput
+  mapUrl: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  openingHours: StringQueryOperatorInput
+}
+
+input AssetsJsonShopsFilterListInput {
+  elemMatch: AssetsJsonShopsFilterInput
 }
 
 input AssetsJsonSortInput {
@@ -2350,6 +2480,7 @@ input SitePluginPluginOptionsFilterInput {
   display: StringQueryOperatorInput
   icon: StringQueryOperatorInput
   include_favicon: BooleanQueryOperatorInput
+  isUsingColorMode: BooleanQueryOperatorInput
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput

@@ -1,10 +1,11 @@
-import { Box, Grid, Heading, Text } from '@chakra-ui/core';
-import { graphql, useStaticQuery } from 'gatsby';
-import React from 'react';
+import { Box, Button, Flex, Grid, Heading, Text } from '@chakra-ui/core';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import React, { useState } from 'react';
 
 import ProductCard from './ProductCard';
 
 const AssortmentSection = () => {
+  const [itemsToShow, setItemsToShow] = useState(4);
   const data = useStaticQuery(graphql`
     {
       assetsJson {
@@ -27,20 +28,49 @@ const AssortmentSection = () => {
 
   const renderProducts = () => {
     if (data?.assetsJson?.products) {
-      return data.assetsJson.products.map((p: any, i: any) => (
-        <ProductCard
-          key={i.toString()}
-          name={p.name}
-          description={p.description}
-          fluidImageProps={p.image.childImageSharp.fluid}
-        />
-      ));
+      return data.assetsJson.products
+        .slice(0, itemsToShow)
+        .map((p: any, i: any) => (
+          <ProductCard
+            key={i.toString()}
+            name={p.name}
+            description={p.description}
+            fluidImageProps={p.image.childImageSharp.fluid}
+          />
+        ));
     }
     return <Text>Нет продуктов</Text>;
   };
 
+  const renderMoreButtons = () => {
+    if (itemsToShow >= 12) {
+      // Show a link
+      return (
+        <Button variantColor="orange">
+          <Link to="/products">Посмотреть ассортимент</Link>
+        </Button>
+      );
+    }
+    // Show more products
+    return (
+      <Button
+        onClick={() => {
+          setItemsToShow(itemsToShow + 4);
+        }}
+      >
+        Показать еще
+      </Button>
+    );
+  };
+
   return (
-    <Box as="section" m="2">
+    <Flex
+      as="section"
+      m="2"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
       <Heading
         as="h1"
         size="xl"
@@ -52,14 +82,19 @@ const AssortmentSection = () => {
         Топ Ассортимент
       </Heading>
       <Grid
-        gridTemplateColumns={{ base: `repeat(auto-fit, minmax(250px, 1fr))` }}
+        gridTemplateColumns={{
+          base: `repeat(auto-fit, minmax(250px, 1fr))`,
+          md: `repeat(auto-fit, minmax(200px, 1fr))`,
+        }}
         gap={6}
+        w="100%"
         maxW="1000px"
         m="auto"
       >
         {renderProducts()}
       </Grid>
-    </Box>
+      {renderMoreButtons()}
+    </Flex>
   );
 };
 

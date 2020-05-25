@@ -43,13 +43,6 @@ module.exports = {
         path: `${__dirname}/src/assets`,
       },
     },
-    /* {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `product_images`,
-        path: `${__dirname}/src/assets/product_images`,
-      },
-    }, */
     {
       resolve: `gatsby-plugin-sharp`,
       options: {

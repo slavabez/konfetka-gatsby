@@ -1,4 +1,12 @@
-import { Box, Flex, Icon, Link as ChakraLink, Text } from '@chakra-ui/core';
+import {
+  Box,
+  Flex,
+  Icon,
+  IconButton,
+  Link as ChakraLink,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/core';
 import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
@@ -26,8 +34,7 @@ MenuItems.defaultProps = {
 };
 
 const Header: React.FC = (props) => {
-  const [show, setShow] = React.useState(false);
-  const handleToggle: () => void = () => setShow(!show);
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
 
   const data = useStaticQuery(graphql`
     query {
@@ -62,31 +69,24 @@ const Header: React.FC = (props) => {
         </GatsbyLink>
       </Box>
 
-      <Box
-        display={{ base: 'block', md: 'none' }}
-        onClick={handleToggle}
-        padding="1rem"
-      >
-        <svg
-          fill="white"
-          width="2rem"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>Menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-        </svg>
-      </Box>
+      <IconButton
+        display={{ base: `block`, md: `none` }}
+        onClick={onToggle}
+        aria-label="Меню"
+        variant="outline"
+        variantColor="white"
+        icon={isOpen ? 'arrow-up' : 'arrow-down'}
+      />
 
       <Box
-        display={{ base: show ? 'block' : 'none', md: 'flex' }}
+        display={{ base: isOpen ? 'block' : 'none', md: 'flex' }}
         width={{ base: 'full', md: 'auto' }}
         alignItems="center"
         justifyContent="flex-end"
         flexGrow={1}
       >
         <MenuItems>
-          <a href="#about_us">Где мы</a>
+          <a href="#shops">Где мы</a>
         </MenuItems>
         <MenuItems>
           <a href="#shops">Магазины</a>

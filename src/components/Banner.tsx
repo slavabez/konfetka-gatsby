@@ -32,6 +32,7 @@ const Banner: React.FC = () => {
         <Box
           backgroundColor="rgba(255,255,255,0.75)"
           p={{ base: 5, md: 10 }}
+          m={{ base: 5 }}
           borderRadius="lg"
           maxWidth="sm"
         >
@@ -55,6 +56,8 @@ const Banner: React.FC = () => {
               mt={2}
               variantColor="orange"
               style={{ textTransform: `uppercase` }}
+              flexGrow={1}
+              mr={{ base: 0, md: 2 }}
             >
               Где Мы
             </Button>
@@ -62,6 +65,7 @@ const Banner: React.FC = () => {
               mt={2}
               leftIcon="info"
               style={{ textTransform: `uppercase` }}
+              flexGrow={1}
             >
               О Нас
             </Button>
