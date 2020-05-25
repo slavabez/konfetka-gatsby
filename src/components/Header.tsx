@@ -1,4 +1,12 @@
-import { Box, Button,Flex, Icon, IconButton,Link as ChakraLink, Text, useDisclosure } from '@chakra-ui/core';
+import {
+  Box,
+  Flex,
+  Icon,
+  IconButton,
+  Link as ChakraLink,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/core';
 import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
@@ -65,20 +73,9 @@ const Header: React.FC = (props) => {
         display={{ base: `block`, md: `none` }}
         onClick={onToggle}
         aria-label="Меню"
-        variant="outline"
-        variantColor="orange.400"
-        icon={isOpen ? "arrow-up" : "arrow-down"}
-      >
-        {/* <svg
-          fill="white"
-          width="2rem"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>Menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-        </svg> */}
-      </IconButton>
+        variantColor="orange"
+        icon={isOpen ? 'arrow-up' : 'arrow-down'}
+      />
 
       <Box
         display={{ base: isOpen ? 'block' : 'none', md: 'flex' }}
