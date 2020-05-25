@@ -73,7 +73,8 @@ const Header: React.FC = (props) => {
         display={{ base: `block`, md: `none` }}
         onClick={onToggle}
         aria-label="Меню"
-        variantColor="orange"
+        variant="outline"
+        variantColor="white"
         icon={isOpen ? 'arrow-up' : 'arrow-down'}
       />
 
@@ -85,7 +86,7 @@ const Header: React.FC = (props) => {
         flexGrow={1}
       >
         <MenuItems>
-          <a href="#about_us">Где мы</a>
+          <a href="#shops">Где мы</a>
         </MenuItems>
         <MenuItems>
           <a href="#shops">Магазины</a>

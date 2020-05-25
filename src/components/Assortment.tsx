@@ -45,19 +45,22 @@ const AssortmentSection = () => {
   const renderMoreButtons = () => {
     if (itemsToShow >= 12) {
       // Show a link
-      return <Link to="products">Посмотреть ассортимент</Link>
-    }
-      // Show more products
       return (
-        <Button
-          onClick={() => {
-            setItemsToShow(itemsToShow + 4);
-          }}
-        >
-          Показать еще
+        <Button variantColor="orange">
+          <Link to="/products">Посмотреть ассортимент</Link>
         </Button>
       );
-
+    }
+    // Show more products
+    return (
+      <Button
+        onClick={() => {
+          setItemsToShow(itemsToShow + 4);
+        }}
+      >
+        Показать еще
+      </Button>
+    );
   };
 
   return (

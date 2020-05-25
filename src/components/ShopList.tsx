@@ -16,7 +16,7 @@ const ShopList = () => {
           openingHours
           image {
             childImageSharp {
-              fluid(maxWidth: 250) {
+              fluid(maxWidth: 300) {
                 ...GatsbyImageSharpFluid
                 ...GatsbyImageSharpFluidLimitPresentationSize
               }
@@ -47,6 +47,7 @@ const ShopList = () => {
   return (
     <Flex
       as="section"
+      id="shops"
       m="2"
       flexDirection="column"
       alignItems="center"
@@ -64,8 +65,7 @@ const ShopList = () => {
       </Heading>
       <Grid
         gridTemplateColumns={{
-          base: `repeat(auto-fit, minmax(320px, 1fr))`,
-          md: `repeat(auto-fit, minmax(320px, 1fr))`,
+          base: `repeat(auto-fit, minmax(300px, 1fr))`,
         }}
         gap={6}
         w="100%"

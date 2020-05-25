@@ -7,6 +7,10 @@ import {
   Icon,
   IconButton,
   Link,
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
 } from '@chakra-ui/core';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
@@ -71,8 +75,8 @@ const ShopCard: React.FC<ProductCardProps> = ({
           </Button>
 
           <IconButton
-            variant="outline"
-            icon={show ? 'chevron-up' : 'chevron-down'}
+            variantColor="orange"
+            icon={show ? 'chevron-up' : 'info'}
             onClick={() => {
               handleToggle();
             }}
@@ -80,10 +84,13 @@ const ShopCard: React.FC<ProductCardProps> = ({
           />
         </Flex>
         <Collapse isOpen={show}>
-          {description}
-          {address}
-          {openingHours}
-          {}
+          <Box p={2}>
+            <Stat>
+              <StatNumber>{address}</StatNumber>
+              <StatLabel>Часы работы: {openingHours}</StatLabel>
+              <StatHelpText>{description}</StatHelpText>
+            </Stat>
+          </Box>
         </Collapse>
       </Box>
     </Flex>
