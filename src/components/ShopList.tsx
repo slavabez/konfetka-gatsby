@@ -1,19 +1,47 @@
-import { Flex, Grid,Heading } from '@chakra-ui/core';
+import { Flex, Grid, Heading, Text } from '@chakra-ui/core';
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
-const shops = [
-  {
-    name: ``,
-    address: ``,
-    openingHours: ``,
-    mapUrl: ``
-  }
-];
+import ShopCard from './ShopCard';
 
 const ShopList = () => {
+  const data = useStaticQuery(graphql`
+    {
+      assetsJson {
+        shops {
+          name
+          description
+          address
+          mapUrl
+          openingHours
+          image {
+            childImageSharp {
+              fluid(maxWidth: 250) {
+                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluidLimitPresentationSize
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
 
   const renderShops = () => {
-    return <p>Shops</p>
+    if (data?.assetsJson?.shops) {
+      return data.assetsJson.shops.map((p: any, i: any) => (
+        <ShopCard
+          key={i.toString()}
+          name={p.name}
+          description={p.description}
+          fluidImageProps={p.image.childImageSharp.fluid}
+          address={p.address}
+          mapUrl={p.mapUrl}
+          openingHours={p.openingHours}
+        />
+      ));
+    }
+    return <Text>Нет продуктов</Text>;
   };
 
   return (
@@ -36,8 +64,8 @@ const ShopList = () => {
       </Heading>
       <Grid
         gridTemplateColumns={{
-          base: `repeat(auto-fit, minmax(250px, 1fr))`,
-          md: `repeat(auto-fit, minmax(200px, 1fr))`,
+          base: `repeat(auto-fit, minmax(320px, 1fr))`,
+          md: `repeat(auto-fit, minmax(320px, 1fr))`,
         }}
         gap={6}
         w="100%"
