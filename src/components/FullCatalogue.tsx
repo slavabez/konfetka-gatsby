@@ -1,23 +1,21 @@
-import { Button, Flex, Grid, Heading, Text } from '@chakra-ui/core';
+import { Box, Button, Flex, Grid, Heading, Text } from '@chakra-ui/core';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 
-import ShopCard from './ShopCard';
+import ProductCard from './ProductCard';
 
-const ShopList = () => {
-  const [numToShow, setNumToShow] = useState(3);
+const CatalogueSection = () => {
+  const [itemsToShow, setItemsToShow] = useState(4);
   const data = useStaticQuery(graphql`
     {
       assetsJson {
-        shops {
+        products {
           name
           description
-          address
-          mapUrl
-          openingHours
+          price
           image {
             childImageSharp {
-              fluid(maxWidth: 300) {
+              fluid(maxWidth: 250) {
                 ...GatsbyImageSharpFluid
                 ...GatsbyImageSharpFluidLimitPresentationSize
               }
@@ -28,39 +26,37 @@ const ShopList = () => {
     }
   `);
 
-  const renderShops = () => {
-    if (data?.assetsJson?.shops) {
-      return data.assetsJson.shops
-        .slice(0, numToShow)
+  const renderProducts = () => {
+    if (data?.assetsJson?.products) {
+      return data.assetsJson.products
+        .slice(0, itemsToShow)
         .map((p: any, i: any) => (
-          <ShopCard
+          <ProductCard
             key={i.toString()}
             name={p.name}
             description={p.description}
             fluidImageProps={p.image.childImageSharp.fluid}
-            address={p.address}
-            mapUrl={p.mapUrl}
-            openingHours={p.openingHours}
           />
         ));
     }
     return <Text>Нет продуктов</Text>;
   };
 
-  const renderMoreButton = () => {
-    if (
-      data?.assetsJson?.shops?.length &&
-      data?.assetsJson?.shops.length <= numToShow
-    ) {
+  const renderMoreButtons = () => {
+    if (itemsToShow >= 12) {
       // Show a link
-      return null;
+      return (
+        <Button variantColor="orange">
+          <Link to="/products">Посмотреть ассортимент</Link>
+        </Button>
+      );
     }
     // Show more products
     return (
       <Button
         variant="outline"
         onClick={() => {
-          setNumToShow(numToShow + 3);
+          setItemsToShow(itemsToShow + 4);
         }}
       >
         Показать еще
@@ -71,7 +67,6 @@ const ShopList = () => {
   return (
     <Flex
       as="section"
-      id="shops"
       m="2"
       flexDirection="column"
       alignItems="center"
@@ -85,22 +80,23 @@ const ShopList = () => {
         mb={{ base: 5 }}
         color="orange.900"
       >
-        Наши Магазины
+        Топ Ассортимент
       </Heading>
       <Grid
         gridTemplateColumns={{
-          base: `repeat(auto-fit, minmax(300px, 1fr))`,
+          base: `repeat(auto-fit, minmax(250px, 1fr))`,
+          md: `repeat(auto-fit, minmax(200px, 1fr))`,
         }}
         gap={6}
         w="100%"
         maxW="1000px"
         m="auto"
       >
-        {renderShops()}
+        {renderProducts()}
       </Grid>
-      {renderMoreButton()}
+      {renderMoreButtons()}
     </Flex>
   );
 };
 
-export default ShopList;
+export default CatalogueSection;

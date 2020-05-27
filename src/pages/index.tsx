@@ -9,8 +9,11 @@ export default function IndexPage(): JSX.Element {
   return (
     <Layout>
       <Banner />
+      <br/>
       <AssortmentSection />
+      <br/>
       <ShopList />
+      <br/>
     </Layout>
   );
 }

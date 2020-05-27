@@ -54,6 +54,7 @@ const AssortmentSection = () => {
     // Show more products
     return (
       <Button
+        variant="outline"
         onClick={() => {
           setItemsToShow(itemsToShow + 4);
         }}

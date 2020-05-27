@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core';
+import { Box, Flex, Text } from '@chakra-ui/core';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -31,7 +31,18 @@ export function Layout({ children }: LayoutProps): JSX.Element {
       </Helmet>
       <Header />
       <Box as="main">{children}</Box>
-      <footer>{/* TODO */}</footer>
+      <Flex
+        as="footer"
+        backgroundColor="orange.400"
+        p={4}
+        alignItems="center"
+        justifyContent="center"
+        mt={10}
+      >
+        <Text color="white" >
+          Конфетка, г. Кокшетау, {new Date().getFullYear()}
+        </Text>
+      </Flex>
     </React.StrictMode>
   );
 }

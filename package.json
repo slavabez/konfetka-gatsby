@@ -8,7 +8,7 @@
     "url": "https://konfetka-shop.kz"
   },
   "license": "UNLICENSED",
-  "description": "Repo for the information site for Konfetka, a set of branded confectionery shops in Kazakhstan.",
+  "description": "Repo for the information site for Konfetka, a set of branded confectionery shops in Kokshetau, Kazakhstan.",
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",

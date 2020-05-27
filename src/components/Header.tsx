@@ -86,7 +86,13 @@ const Header: React.FC = (props) => {
         flexGrow={1}
       >
         <MenuItems>
-          <a href="#shops">Где мы</a>
+          <ChakraLink
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://2gis.kz/kokshetau/branches/70000001033027261"
+          >
+            Где мы <Icon name="external-link" mx="2px" />
+          </ChakraLink>
         </MenuItems>
         <MenuItems>
           <a href="#shops">Магазины</a>
