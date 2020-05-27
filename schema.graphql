@@ -13,12 +13,25 @@ interface Node {
 }
 
 type AssetsJson implements Node {
+  categories: [AssetsJsonCategories]
   children: [Node!]!
   id: ID!
   internal: Internal!
   parent: Node
   products: [AssetsJsonProducts]
   shops: [AssetsJsonShops]
+}
+
+type AssetsJsonCategories {
+  name: String
+  products: [AssetsJsonCategoriesProducts]
+}
+
+type AssetsJsonCategoriesProducts {
+  description: String
+  image: File
+  name: String
+  price: String
 }
 
 type AssetsJsonConnection {
@@ -502,7 +515,7 @@ type Query {
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: SiteBuildMetadataSortInput): SiteBuildMetadataConnection!
   allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
-  assetsJson(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, products: AssetsJsonProductsFilterListInput, shops: AssetsJsonShopsFilterListInput): AssetsJson
+  assetsJson(categories: AssetsJsonCategoriesFilterListInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, products: AssetsJsonProductsFilterListInput, shops: AssetsJsonShopsFilterListInput): AssetsJson
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childAssetsJson: AssetsJsonFilterInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
@@ -736,6 +749,48 @@ type SiteSiteMetadata {
 }
 
 enum AssetsJsonFieldsEnum {
+  categories
+  categories___name
+  categories___products
+  categories___products___description
+  categories___products___image___absolutePath
+  categories___products___image___accessTime
+  categories___products___image___atime
+  categories___products___image___atimeMs
+  categories___products___image___base
+  categories___products___image___birthTime
+  categories___products___image___birthtime
+  categories___products___image___birthtimeMs
+  categories___products___image___blksize
+  categories___products___image___blocks
+  categories___products___image___changeTime
+  categories___products___image___children
+  categories___products___image___ctime
+  categories___products___image___ctimeMs
+  categories___products___image___dev
+  categories___products___image___dir
+  categories___products___image___ext
+  categories___products___image___extension
+  categories___products___image___gid
+  categories___products___image___id
+  categories___products___image___ino
+  categories___products___image___mode
+  categories___products___image___modifiedTime
+  categories___products___image___mtime
+  categories___products___image___mtimeMs
+  categories___products___image___name
+  categories___products___image___nlink
+  categories___products___image___prettySize
+  categories___products___image___publicURL
+  categories___products___image___rdev
+  categories___products___image___relativeDirectory
+  categories___products___image___relativePath
+  categories___products___image___root
+  categories___products___image___size
+  categories___products___image___sourceInstanceName
+  categories___products___image___uid
+  categories___products___name
+  categories___products___price
   children
   children___children
   children___children___children
@@ -835,6 +890,7 @@ enum AssetsJsonFieldsEnum {
   products___image___blksize
   products___image___blocks
   products___image___changeTime
+  products___image___childAssetsJson___categories
   products___image___childAssetsJson___children
   products___image___childAssetsJson___id
   products___image___childAssetsJson___products
@@ -894,6 +950,7 @@ enum AssetsJsonFieldsEnum {
   shops___image___blksize
   shops___image___blocks
   shops___image___changeTime
+  shops___image___childAssetsJson___categories
   shops___image___childAssetsJson___children
   shops___image___childAssetsJson___id
   shops___image___childAssetsJson___products
@@ -1076,6 +1133,12 @@ enum FileFieldsEnum {
   blksize
   blocks
   changeTime
+  childAssetsJson___categories
+  childAssetsJson___categories___name
+  childAssetsJson___categories___products
+  childAssetsJson___categories___products___description
+  childAssetsJson___categories___products___name
+  childAssetsJson___categories___products___price
   childAssetsJson___children
   childAssetsJson___children___children
   childAssetsJson___children___children___children
@@ -2072,7 +2135,28 @@ enum SortOrderEnum {
   DESC
 }
 
+input AssetsJsonCategoriesFilterInput {
+  name: StringQueryOperatorInput
+  products: AssetsJsonCategoriesProductsFilterListInput
+}
+
+input AssetsJsonCategoriesFilterListInput {
+  elemMatch: AssetsJsonCategoriesFilterInput
+}
+
+input AssetsJsonCategoriesProductsFilterInput {
+  description: StringQueryOperatorInput
+  image: FileFilterInput
+  name: StringQueryOperatorInput
+  price: StringQueryOperatorInput
+}
+
+input AssetsJsonCategoriesProductsFilterListInput {
+  elemMatch: AssetsJsonCategoriesProductsFilterInput
+}
+
 input AssetsJsonFilterInput {
+  categories: AssetsJsonCategoriesFilterListInput
   children: NodeFilterListInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput

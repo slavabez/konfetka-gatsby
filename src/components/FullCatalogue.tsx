@@ -9,25 +9,30 @@ const CatalogueSection = () => {
   const data = useStaticQuery(graphql`
     {
       assetsJson {
-        products {
+        categories {
           name
-          description
-          price
-          image {
-            childImageSharp {
-              fluid(maxWidth: 250) {
-                ...GatsbyImageSharpFluid
-                ...GatsbyImageSharpFluidLimitPresentationSize
+          products {
+            name
+            description
+            image {
+              childImageSharp {
+                fluid(maxWidth: 250) {
+                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluidLimitPresentationSize
+                }
               }
             }
           }
         }
       }
     }
+
   `);
 
+  console.log(data);
+
   const renderProducts = () => {
-    if (data?.assetsJson?.products) {
+    if (data?.assetsJson?.categories) {
       return data.assetsJson.products
         .slice(0, itemsToShow)
         .map((p: any, i: any) => (
