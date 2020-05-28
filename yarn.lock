@@ -6572,6 +6572,11 @@ gatsby-page-utils@^0.1.1:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
+gatsby-plugin-analytics@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-analytics/-/gatsby-plugin-analytics-0.2.0.tgz#540765215adef8639760909a649833e86bc688b5"
+  integrity sha512-LHDbJLZI7M1P0iTVrVVJD1S0mtLK/VhqPTyFjTp5R19UYRGxIznCY2BuZ5cVJMRb0bRl0lnhVnPYek+udz8onA==
+
 gatsby-plugin-chakra-ui@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-chakra-ui/-/gatsby-plugin-chakra-ui-0.1.4.tgz#2e8fcb85fa75b5adc4265a937766b47a4717900d"
@@ -6584,6 +6589,14 @@ gatsby-plugin-emotion@^4.2.0:
   dependencies:
     "@babel/runtime" "^7.8.7"
     "@emotion/babel-preset-css-prop" "^10.0.27"
+
+gatsby-plugin-google-analytics@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.3.2.tgz#65535f204ecd48357ffe67b4937a2cd00e90bf1b"
+  integrity sha512-61vrzskJd/b2yTmOpn+FnZF6yJDCo2GoxP6EnGPCK4oY6YHLh8K0S9LKRUEeMeFRcOu2Nk4FiUxQLoCjxQ7rvQ==
+  dependencies:
+    "@babel/runtime" "^7.9.6"
+    minimatch "3.0.4"
 
 gatsby-plugin-manifest@^2.4.1:
   version "2.4.1"

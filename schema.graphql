@@ -74,6 +74,46 @@ type AssetsJsonShops {
   openingHours: String
 }
 
+type CategoriesJson implements Node {
+  children: [Node!]!
+  id: ID!
+  internal: Internal!
+  name: String
+  parent: Node
+  products: [CategoriesJsonProducts]
+}
+
+type CategoriesJsonConnection {
+  distinct(field: CategoriesJsonFieldsEnum!): [String!]!
+  edges: [CategoriesJsonEdge!]!
+  group(field: CategoriesJsonFieldsEnum!, limit: Int, skip: Int): [CategoriesJsonGroupConnection!]!
+  nodes: [CategoriesJson!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CategoriesJsonEdge {
+  next: CategoriesJson
+  node: CategoriesJson!
+  previous: CategoriesJson
+}
+
+type CategoriesJsonGroupConnection {
+  edges: [CategoriesJsonEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [CategoriesJson!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CategoriesJsonProducts {
+  description: String
+  image: File
+  name: String
+  price: String
+}
+
 type Directory implements Node {
   absolutePath: String!
   accessTime(
@@ -252,6 +292,7 @@ type File implements Node {
   childAssetsJson: AssetsJson
   childImageSharp: ImageSharp
   children: [Node!]!
+  childrenCategoriesJson: [CategoriesJson]
   ctime(
     "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
@@ -508,6 +549,7 @@ type PageInfo {
 
 type Query {
   allAssetsJson(filter: AssetsJsonFilterInput, limit: Int, skip: Int, sort: AssetsJsonSortInput): AssetsJsonConnection!
+  allCategoriesJson(filter: CategoriesJsonFilterInput, limit: Int, skip: Int, sort: CategoriesJsonSortInput): CategoriesJsonConnection!
   allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: DirectorySortInput): DirectoryConnection!
   allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: FileSortInput): FileConnection!
   allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: ImageSharpSortInput): ImageSharpConnection!
@@ -516,8 +558,9 @@ type Query {
   allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
   assetsJson(categories: AssetsJsonCategoriesFilterListInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, products: AssetsJsonProductsFilterListInput, shops: AssetsJsonShopsFilterListInput): AssetsJson
+  categoriesJson(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, products: CategoriesJsonProductsFilterListInput): CategoriesJson
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
-  file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childAssetsJson: AssetsJsonFilterInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
+  file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childAssetsJson: AssetsJsonFilterInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, childrenCategoriesJson: CategoriesJsonFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
@@ -733,6 +776,7 @@ type SitePluginPluginOptions {
   start_url: String
   stripMetadata: Boolean
   theme_color: String
+  trackingId: String
   useMozJpeg: Boolean
 }
 
@@ -765,6 +809,7 @@ enum AssetsJsonFieldsEnum {
   categories___products___image___blocks
   categories___products___image___changeTime
   categories___products___image___children
+  categories___products___image___childrenCategoriesJson
   categories___products___image___ctime
   categories___products___image___ctimeMs
   categories___products___image___dev
@@ -898,6 +943,11 @@ enum AssetsJsonFieldsEnum {
   products___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   products___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   products___image___children
+  products___image___childrenCategoriesJson
+  products___image___childrenCategoriesJson___children
+  products___image___childrenCategoriesJson___id
+  products___image___childrenCategoriesJson___name
+  products___image___childrenCategoriesJson___products
   products___image___children___children
   products___image___children___id
   products___image___ctime
@@ -958,6 +1008,11 @@ enum AssetsJsonFieldsEnum {
   shops___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   shops___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   shops___image___children
+  shops___image___childrenCategoriesJson
+  shops___image___childrenCategoriesJson___children
+  shops___image___childrenCategoriesJson___id
+  shops___image___childrenCategoriesJson___name
+  shops___image___childrenCategoriesJson___products
   shops___image___children___children
   shops___image___children___id
   shops___image___ctime
@@ -997,6 +1052,160 @@ enum AssetsJsonFieldsEnum {
   shops___mapUrl
   shops___name
   shops___openingHours
+}
+
+enum CategoriesJsonFieldsEnum {
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  name
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  products
+  products___description
+  products___image___absolutePath
+  products___image___accessTime
+  products___image___atime
+  products___image___atimeMs
+  products___image___base
+  products___image___birthTime
+  products___image___birthtime
+  products___image___birthtimeMs
+  products___image___blksize
+  products___image___blocks
+  products___image___changeTime
+  products___image___childAssetsJson___categories
+  products___image___childAssetsJson___children
+  products___image___childAssetsJson___id
+  products___image___childAssetsJson___products
+  products___image___childAssetsJson___shops
+  products___image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  products___image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  products___image___children
+  products___image___childrenCategoriesJson
+  products___image___childrenCategoriesJson___children
+  products___image___childrenCategoriesJson___id
+  products___image___childrenCategoriesJson___name
+  products___image___childrenCategoriesJson___products
+  products___image___children___children
+  products___image___children___id
+  products___image___ctime
+  products___image___ctimeMs
+  products___image___dev
+  products___image___dir
+  products___image___ext
+  products___image___extension
+  products___image___gid
+  products___image___id
+  products___image___ino
+  products___image___internal___content
+  products___image___internal___contentDigest
+  products___image___internal___description
+  products___image___internal___fieldOwners
+  products___image___internal___ignoreType
+  products___image___internal___mediaType
+  products___image___internal___owner
+  products___image___internal___type
+  products___image___mode
+  products___image___modifiedTime
+  products___image___mtime
+  products___image___mtimeMs
+  products___image___name
+  products___image___nlink
+  products___image___parent___children
+  products___image___parent___id
+  products___image___prettySize
+  products___image___publicURL
+  products___image___rdev
+  products___image___relativeDirectory
+  products___image___relativePath
+  products___image___root
+  products___image___size
+  products___image___sourceInstanceName
+  products___image___uid
+  products___name
+  products___price
 }
 
 enum DirectoryFieldsEnum {
@@ -1191,6 +1400,7 @@ enum FileFieldsEnum {
   childAssetsJson___products___image___blocks
   childAssetsJson___products___image___changeTime
   childAssetsJson___products___image___children
+  childAssetsJson___products___image___childrenCategoriesJson
   childAssetsJson___products___image___ctime
   childAssetsJson___products___image___ctimeMs
   childAssetsJson___products___image___dev
@@ -1232,6 +1442,7 @@ enum FileFieldsEnum {
   childAssetsJson___shops___image___blocks
   childAssetsJson___shops___image___changeTime
   childAssetsJson___shops___image___children
+  childAssetsJson___shops___image___childrenCategoriesJson
   childAssetsJson___shops___image___ctime
   childAssetsJson___shops___image___ctimeMs
   childAssetsJson___shops___image___dev
@@ -1351,6 +1562,87 @@ enum FileFieldsEnum {
   childImageSharp___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   children
+  childrenCategoriesJson
+  childrenCategoriesJson___children
+  childrenCategoriesJson___children___children
+  childrenCategoriesJson___children___children___children
+  childrenCategoriesJson___children___children___id
+  childrenCategoriesJson___children___id
+  childrenCategoriesJson___children___internal___content
+  childrenCategoriesJson___children___internal___contentDigest
+  childrenCategoriesJson___children___internal___description
+  childrenCategoriesJson___children___internal___fieldOwners
+  childrenCategoriesJson___children___internal___ignoreType
+  childrenCategoriesJson___children___internal___mediaType
+  childrenCategoriesJson___children___internal___owner
+  childrenCategoriesJson___children___internal___type
+  childrenCategoriesJson___children___parent___children
+  childrenCategoriesJson___children___parent___id
+  childrenCategoriesJson___id
+  childrenCategoriesJson___internal___content
+  childrenCategoriesJson___internal___contentDigest
+  childrenCategoriesJson___internal___description
+  childrenCategoriesJson___internal___fieldOwners
+  childrenCategoriesJson___internal___ignoreType
+  childrenCategoriesJson___internal___mediaType
+  childrenCategoriesJson___internal___owner
+  childrenCategoriesJson___internal___type
+  childrenCategoriesJson___name
+  childrenCategoriesJson___parent___children
+  childrenCategoriesJson___parent___children___children
+  childrenCategoriesJson___parent___children___id
+  childrenCategoriesJson___parent___id
+  childrenCategoriesJson___parent___internal___content
+  childrenCategoriesJson___parent___internal___contentDigest
+  childrenCategoriesJson___parent___internal___description
+  childrenCategoriesJson___parent___internal___fieldOwners
+  childrenCategoriesJson___parent___internal___ignoreType
+  childrenCategoriesJson___parent___internal___mediaType
+  childrenCategoriesJson___parent___internal___owner
+  childrenCategoriesJson___parent___internal___type
+  childrenCategoriesJson___parent___parent___children
+  childrenCategoriesJson___parent___parent___id
+  childrenCategoriesJson___products
+  childrenCategoriesJson___products___description
+  childrenCategoriesJson___products___image___absolutePath
+  childrenCategoriesJson___products___image___accessTime
+  childrenCategoriesJson___products___image___atime
+  childrenCategoriesJson___products___image___atimeMs
+  childrenCategoriesJson___products___image___base
+  childrenCategoriesJson___products___image___birthTime
+  childrenCategoriesJson___products___image___birthtime
+  childrenCategoriesJson___products___image___birthtimeMs
+  childrenCategoriesJson___products___image___blksize
+  childrenCategoriesJson___products___image___blocks
+  childrenCategoriesJson___products___image___changeTime
+  childrenCategoriesJson___products___image___children
+  childrenCategoriesJson___products___image___childrenCategoriesJson
+  childrenCategoriesJson___products___image___ctime
+  childrenCategoriesJson___products___image___ctimeMs
+  childrenCategoriesJson___products___image___dev
+  childrenCategoriesJson___products___image___dir
+  childrenCategoriesJson___products___image___ext
+  childrenCategoriesJson___products___image___extension
+  childrenCategoriesJson___products___image___gid
+  childrenCategoriesJson___products___image___id
+  childrenCategoriesJson___products___image___ino
+  childrenCategoriesJson___products___image___mode
+  childrenCategoriesJson___products___image___modifiedTime
+  childrenCategoriesJson___products___image___mtime
+  childrenCategoriesJson___products___image___mtimeMs
+  childrenCategoriesJson___products___image___name
+  childrenCategoriesJson___products___image___nlink
+  childrenCategoriesJson___products___image___prettySize
+  childrenCategoriesJson___products___image___publicURL
+  childrenCategoriesJson___products___image___rdev
+  childrenCategoriesJson___products___image___relativeDirectory
+  childrenCategoriesJson___products___image___relativePath
+  childrenCategoriesJson___products___image___root
+  childrenCategoriesJson___products___image___size
+  childrenCategoriesJson___products___image___sourceInstanceName
+  childrenCategoriesJson___products___image___uid
+  childrenCategoriesJson___products___name
+  childrenCategoriesJson___products___price
   children___children
   children___children___children
   children___children___children___children
@@ -1999,6 +2291,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___start_url
   pluginCreator___pluginOptions___stripMetadata
   pluginCreator___pluginOptions___theme_color
+  pluginCreator___pluginOptions___trackingId
   pluginCreator___pluginOptions___useMozJpeg
   pluginCreator___resolve
   pluginCreator___ssrAPIs
@@ -2124,6 +2417,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___start_url
   pluginOptions___stripMetadata
   pluginOptions___theme_color
+  pluginOptions___trackingId
   pluginOptions___useMozJpeg
   resolve
   ssrAPIs
@@ -2199,6 +2493,35 @@ input BooleanQueryOperatorInput {
   in: [Boolean]
   ne: Boolean
   nin: [Boolean]
+}
+
+input CategoriesJsonFilterInput {
+  children: NodeFilterListInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  name: StringQueryOperatorInput
+  parent: NodeFilterInput
+  products: CategoriesJsonProductsFilterListInput
+}
+
+input CategoriesJsonFilterListInput {
+  elemMatch: CategoriesJsonFilterInput
+}
+
+input CategoriesJsonProductsFilterInput {
+  description: StringQueryOperatorInput
+  image: FileFilterInput
+  name: StringQueryOperatorInput
+  price: StringQueryOperatorInput
+}
+
+input CategoriesJsonProductsFilterListInput {
+  elemMatch: CategoriesJsonProductsFilterInput
+}
+
+input CategoriesJsonSortInput {
+  fields: [CategoriesJsonFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
 }
 
 input DateQueryOperatorInput {
@@ -2278,6 +2601,7 @@ input FileFilterInput {
   childAssetsJson: AssetsJsonFilterInput
   childImageSharp: ImageSharpFilterInput
   children: NodeFilterListInput
+  childrenCategoriesJson: CategoriesJsonFilterListInput
   ctime: DateQueryOperatorInput
   ctimeMs: FloatQueryOperatorInput
   dev: IntQueryOperatorInput
@@ -2572,6 +2896,7 @@ input SitePluginPluginOptionsFilterInput {
   start_url: StringQueryOperatorInput
   stripMetadata: BooleanQueryOperatorInput
   theme_color: StringQueryOperatorInput
+  trackingId: StringQueryOperatorInput
   useMozJpeg: BooleanQueryOperatorInput
 }
 

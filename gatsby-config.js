@@ -21,6 +21,12 @@ module.exports = {
     },
     'gatsby-plugin-emotion',
     {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: `UA-106809096-1`
+      }
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: `Конфетка - Сеть кондитерских магазинов`,

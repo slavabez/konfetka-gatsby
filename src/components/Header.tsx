@@ -7,7 +7,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/core';
-import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
+import { graphql, Link as GatsbyLink, Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -75,7 +75,7 @@ const Header: React.FC = (props) => {
         aria-label="Меню"
         variant="outline"
         variantColor="white"
-        icon={isOpen ? 'arrow-up' : 'arrow-down'}
+        icon={isOpen ? 'chevron-up' : 'chevron-down'}
       />
 
       <Box
@@ -98,7 +98,7 @@ const Header: React.FC = (props) => {
           <a href="#shops">Магазины</a>
         </MenuItems>
         <MenuItems>
-          <a href="#assortment">Ассортимент</a>
+          <Link to="/products">Ассортимент</Link>
         </MenuItems>
         <MenuItems>
           <ChakraLink
